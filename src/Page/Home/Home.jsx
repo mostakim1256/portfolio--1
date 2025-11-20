@@ -1,7 +1,13 @@
 import React from "react";
 import logo from "../../../src/assets/Image/1234.png";
-import cv from "../../../src/assets/Minimalist Professional CV Resume.pdf"
+import cv from "../../../src/assets/Image/shifat cv.pdf"
 import ab from "../../../src/assets/Image/portfolio.png"
+import html from "../../../src/assets/Image//html.jpeg"
+import css from "../../../src/assets/Image/css.webp"
+import as from "../../../src/assets/Image/js.webp"
+import aw from "../../../src/assets/Image/react.webp"
+import ad from "../../../src/assets/Image/next.webp"
+import af from "../../../src/assets/Image/angular.webp"
 const Home = () => {
     return (
         <div>
@@ -71,7 +77,7 @@ const Home = () => {
             >
                 <div className="ml-0 md:ml-64 w-full">
                     <h2 className="text-4xl md:text-5xl font-bold text-green-700 mb-12 text-center md:text-left dark:text-green-700">
-                        My <span className="text-green-500">Projects & Skills</span>
+                        My <span className="text-green-500">Projects </span>
                     </h2>
 
                     {/* Project / Skill Cards Grid */}
@@ -121,7 +127,7 @@ const Home = () => {
                                 </a>
                             </div>
                         </div>
-
+                        <br />
                         {/* Card 3 */}
                         <div className="rounded-xl shadow-lg bg-green-100 hover:scale-105 transition duration-500 overflow-hidden">
                             <img
@@ -144,16 +150,40 @@ const Home = () => {
                                 </a>
                             </div>
                         </div>
+                        <div className="rounded-xl shadow-lg bg-green-100 hover:scale-105 transition duration-500 overflow-hidden">
+                            <img
+                                src="/project3.jpg"
+                                alt="Project 3"
+                                className="w-full h-48 object-cover"
+                            />
+                            <div className="p-6">
+                                <h3 className="text-2xl font-semibold mb-2 text-black dark:text-black">
+                                    React Landing Page
+                                </h3>
+                                <p className="text-gray-600 mb-4 dark:text-gray-800">
+                                    Smooth animations and clean UI for landing page websites.
+                                </p>
+                                <a
+                                    href="#"
+                                    className="text-green-500 font-semibold hover:underline"
+                                >
+                                    🔗 Live Demo
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
+                    <br />
+                    <h2 className="text-4xl md:text-5xl font-bold text-green-700 mb-12 text-center md:text-left dark:text-green-700">
+                        My <span className="text-green-500"> Skills</span>
+                    </h2>
                     {/* Programming / Tech Icons */}
                     <div className="flex gap-6 mt-16 flex-wrap justify-start">
-                        <img src="/icon/html.png" className="w-16 h-16" alt="HTML" />
-                        <img src="/icon/css.png" className="w-16 h-16" alt="CSS" />
-                        <img src="/icon/js.png" className="w-16 h-16" alt="JavaScript" />
-                        <img src="/icon/react.png" className="w-16 h-16" alt="React" />
-                        <img src="/icon/next.png" className="w-16 h-16" alt="Next.js" />
-                        <img src="/icon/angular.png" className="w-16 h-16" alt="Angular" />
+                        <img src={html} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="HTML" />
+                        <img src={css} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="HTML" />
+                        <img src={as} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="HTML" />
+                        <img src={aw} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="HTML" />
+                        <img src={af} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="HTML" />
+
                     </div>
                 </div>
             </section>
