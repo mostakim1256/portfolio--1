@@ -5,10 +5,12 @@ import Footer from '../Components/Sheardcomponents/Footer';
 
 const Root = () => {
     return (
-        <div>
+        <div className='bg-[#212428]'>
+            <div className='container mx-auto '>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
+        </div>
         </div>
     );
 };

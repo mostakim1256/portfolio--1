@@ -1,221 +1,118 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import Typed from "typed.js";
-import logo from "../../../src/assets/Image/1234.png";
-import cv from "../../../src/assets/Image/shifat cv.pdf"
-import ab from "../../../src/assets/Image/portfolio.png"
-import html from "../../../src/assets/Image/html.jpeg"
-import css from "../../../src/assets/Image/css.webp"
-import as from "../../../src/assets/Image/js.webp"
-import aw from "../../../src/assets/Image/react.webp"
-import ad from "../../../src/assets/Image/next.webp"
-import af from "../../../src/assets/Image/angular.webp"
-import Image from "../../../src/assets/Image/card2image.webp"
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import Heronice from "./Homecomponents/Heronice";
+
+// Assets Import
+import cv from "../../assets/Image/shifat cv.pdf";
+import bg from "../../assets/Image/ChatGPT_Image_Feb_9__2026__12_21_30_PM-removebg-preview.png";
 
 const Home = () => {
-    const typedRef = useRef(null);
+  const typedRef = useRef(null);
 
-    useEffect(() => {
-        const options = {
-            strings: [
-                "Frontend Developer",
+  // Typed.js Effect
+  useEffect(() => {
+    const typed = new Typed(typedRef.current, {
+      strings: ["Frontend Developer", "I build Modern Web Applications"],
+      typeSpeed: 50,
+      backSpeed: 40,
+      backDelay: 1000,
+      loop: true,
+    });
 
-                "I build Modern Web Applications"
-            ],
-            typeSpeed: 50,
-            backSpeed: 40,
-            backDelay: 1000,
-            loop: true,
-        };
+    return () => typed.destroy();
+  }, []);
 
-        const typed = new Typed(typedRef.current, options);
+  // Particles init
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
 
-        return () => typed.destroy();
-    }, []);
+  return (
+    <div className="relative bg-[#212428] text-white overflow-hidden">
+      {/* PARTICLES BACKGROUND */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: { enable: false },
+          particles: {
+            number: { value: 60 },
+            color: { value: "#ff014f" },
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: { min: 1, max: 4 } },
+            move: { enable: true, speed: 2 },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "repulse" },
+            },
+            modes: {
+              repulse: { distance: 120 },
+            },
+          },
+        }}
+        className="absolute top-0 left-0 w-full h-full"
+      />
 
-    return (
-        <div>
-            {/* HERO SECTION */}
-            <section
-                className="
-                    min-h-screen
-                    px-6 lg:px-20 py-20
-                    flex items-center justify-between
-                    bg-gradient-to-r from-green-300 via-white to-green-200
-                    animate-gradient
-                "
+      {/* HERO SECTION */}
+      <section className="relative z-10 min-h-screen py-20 flex flex-col md:flex-row items-center justify-between">
+        {/* LEFT CONTENT */}
+        <div className="space-y-8 ">
+          <p >Welcome to my world</p>
+          <h1 className="text-5xl md:text-7xl font-semibold leading-tight text-[#FF014F]">
+            Hi, I'm Sifat
+          </h1>
+
+          <h2
+            ref={typedRef}
+            className="text-4xl md:text-5xl font-bold min-h-[60px]"
+          ></h2>
+
+          <p className="text-xl md:text-2xl leading-relaxed">
+            I build modern, fast and responsive web applications using
+            <br />
+            <span className="font-semibold"> React</span>,
+            <span className="font-semibold"> Tailwind CSS</span> &
+            <span className="font-semibold"> JavaScript</span>.
+          </p>
+
+          <div className="flex gap-6 mt-8">
+            <a
+              href="/contact"
+              className="px-8 py-4 bg-[#ff014f] rounded-lg font-bold text-lg  "
             >
-                {/* LEFT SIDE TEXT */}
-                <div className="max-w-xl space-y-6 ml-0 md:ml-64">
-                    {/* Stable Text */}
-                    <h1 className="text-black text-4xl md:text-6xl font-bold leading-tight dark:text-black">
-                        Hi, I'm <span className="text-green-400">Sifat</span>
-                    </h1>
+              Hire Me
+            </a>
 
-                    {/* Typed Animated Text */}
-                    <h2
-                        className="text-black text-3xl md:text-4xl font-bold mt-2"
-                        ref={typedRef}
-                    ></h2>
-
-                    {/* Description */}
-                    <p className="text-gray-800 text-lg dark:text-gray-800">
-                        I build modern, fast and responsive web applications using
-                        <span className="text-green-400"> React</span>,
-                        <span className="text-green-400"> Tailwind CSS</span> &{" "}
-                        <span className="text-green-400"> JavaScript</span>.
-                    </p>
-
-                    {/* BUTTONS */}
-                    <div className="flex gap-4">
-                        <a
-                            href="/contact"
-                            className="px-6 py-3 animate-bounce bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition duration-300 text-black dark:text-black"
-                        >
-                            Hire Me
-                        </a>
-
-                        <button className=" px-6 py-3 animate-bounce bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition duration-300 text-black dark:text-black">
-                            <a href={cv} download>
-                                Download CV
-                            </a>
-                        </button>
-                    </div>
-                </div>
-
-                {/* RIGHT SIDE IMAGE */}
-                <div className="mt-12 md:mt-0 md:mr-0 flex justify-center hover:scale-110 duration-1000 ml-24 h-100 w-100 md:w-auto">
-                    <div className="w-80 h-99 overflow-hidden rounded-2xl bg-green-100 flex items-center justify-center shadow-xl">
-                        <img
-                            src={logo}
-                            alt="Profile Logo"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </div>
-            </section>
-
-            {/* PROJECTS & SKILLS SECTION */}
-            <section
-                className="
-                    min-h-screen
-                    px-6 lg:px-20 py-20
-                    bg-gradient-to-r from-green-300 via-white to-green-200
-                    animate-gradient
-                "
+            <a
+              href={cv}
+              download
+              className="px-8 py-4 bg-[#ff014f] rounded-lg font-bold text-lg"
             >
-                <div className="ml-0 md:ml-64 w-full">
-                    <h2 className="text-4xl md:text-5xl font-bold text-green-700 mb-12 text-center md:text-left dark:text-green-700">
-                        My <span className="text-green-500">Projects </span>
-                    </h2>
-
-                    {/* Project / Skill Cards Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl w-full">
-                        {/* Card 1 */}
-                        <div className="rounded-xl shadow-lg bg-green-100 hover:scale-105 transition duration-500 overflow-hidden">
-                            <img
-                                src={ab}
-                                alt="Project 1"
-                                className="w-full h-48 object-cover"
-                            />
-                            <div className="p-6">
-                                <h3 className="text-2xl font-semibold mb-2 text-black dark:text-black">
-                                    Portfolio Website
-                                </h3>
-                                <p className="text-gray-600 mb-4 dark:text-gray-800">
-                                    A modern and fully responsive portfolio made with React & Tailwind.
-                                </p>
-                                <a
-                                    href="https://shifatportfolio.vercel.app/"
-                                    className="text-green-500 font-semibold hover:underline"
-                                >
-                                    🔗 Live Demo
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* Card 2 */}
-                        <div className="rounded-xl shadow-lg bg-green-100 hover:scale-105 transition duration-500 overflow-hidden">
-                            <img
-                                src={Image}
-                                alt="Project 2"
-                                className="w-full h-48 object-cover"
-                            />
-                            <div className="p-6">
-                                <h3 className="text-2xl font-semibold mb-2 text-black dark:text-black">
-                                    E-Commerce UI
-                                </h3>
-                                <p className="text-gray-600 mb-4 dark:text-gray-800">
-                                    Clean e-commerce frontend with product cards & animations.
-                                </p>
-                                <a
-                                    href="#"
-                                    className="text-green-500 font-semibold hover:underline"
-                                >
-                                    🔗 Live Demo
-                                </a>
-                            </div>
-                        </div>
-                        <br />
-                        {/* Card 3 */}
-                        <div className="rounded-xl shadow-lg bg-green-100 hover:scale-105 transition duration-500 overflow-hidden">
-                            <img
-                                src="/project3.jpg"
-                                alt="Project 3"
-                                className="w-full h-48 object-cover"
-                            />
-                            <div className="p-6">
-                                <h3 className="text-2xl font-semibold mb-2 text-black dark:text-black">
-                                    Neste
-                                </h3>
-                                <p className="text-gray-600 mb-4 dark:text-gray-800">
-                                    Smooth animations and clean UI for websites.
-                                </p>
-                                <a
-                                    href="#"
-                                    className="text-green-500 font-semibold hover:underline"
-                                >
-                                    🔗 Live Demo
-                                </a>
-                            </div>
-                        </div>
-                        <div className="rounded-xl shadow-lg bg-green-100 hover:scale-105 transition duration-500 overflow-hidden">
-                            <img
-                                src="/project3.jpg"
-                                alt="Project 3"
-                                className="w-full h-48 object-cover"
-                            />
-                            <div className="p-6">
-                                <h3 className="text-2xl font-semibold mb-2 text-black dark:text-black">
-                                    React Landing Page
-                                </h3>
-                                <p className="text-gray-600 mb-4 dark:text-gray-800">
-                                    Smooth animations and clean UI for landing page websites.
-                                </p>
-                                <a
-                                    href="#"
-                                    className="text-green-500 font-semibold hover:underline"
-                                >
-                                    🔗 Live Demo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    <h2 className="text-4xl md:text-5xl font-bold text-green-700 mb-12 text-center md:text-left dark:text-green-700">
-                        My <span className="text-green-500"> Skills</span>
-                    </h2>
-                    {/* Programming / Tech Icons */}
-                    <div className="flex gap-6 mt-16 flex-wrap justify-start">
-                        <img src={html} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="HTML" />
-                        <img src={css} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="CSS" />
-                        <img src={as} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="JavaScript" />
-                        <img src={aw} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="React" />
-                        <img src={af} className="w-36 h-36 border border-gray-500 border-2 hover:scale-110 duration-1000" alt="Angular" />
-                    </div>
-                </div>
-            </section>
+              Download CV
+            </a>
+          </div>
         </div>
-    );
+
+        {/* RIGHT IMAGE WITH FADE EFFECT */}
+        <div className="mt-12 md:mt-0 flex justify-end">
+          <div className="relative">
+            <img src={bg} alt="Sifat" className="max-w-md w-full" />
+
+            {/* Fade Overlay */}
+            <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#212428]" />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <Heronice />
+      </section>
+    </div>
+  );
 };
 
 export default Home;
