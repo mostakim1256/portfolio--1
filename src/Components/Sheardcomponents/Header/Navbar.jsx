@@ -16,20 +16,20 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-[#ff014f]/20 text-white shadow-lg">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#212428] backdrop-blur-md border-b border-[#ff014f]/20 text-white shadow-lg">
+      <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20 md:h-24">
 
-          {/* বাম পাশ — শুধু লোগো + নাম */}
-          <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#ff014f]/70 shadow-md hover:shadow-[#ff014f]/30 hover:scale-105 transition-all duration-300">
+          {/* LEFT — Logo + Name */}
+          <div className="flex items-center gap-4 flex-shrink-0">
+            <div className="w-12 h-22 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#ff014f]/70 shadow-md hover:shadow-[#ff014f]/30 hover:scale-105 transition-all duration-300">
               <img src={logo} alt="Profile" className="w-full h-full object-cover" />
             </div>
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight">SHIFAT</h1>
+            <h1 className="text-lg md:text-2xl font-bold tracking-tight">SHIFAT</h1>
           </div>
 
-          {/* মাঝখানে — ডেস্কটপ নেভিগেশন */}
-          <nav className="hidden md:flex items-center justify-center gap-6 lg:gap-10 flex-1">
+          {/* CENTER — Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-10 flex-1 justify-center">
             {menuItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -48,9 +48,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* ডান পাশ — ইউজার মেনু + মোবাইল টগল */}
-          <div className="flex items-center gap-3 md:gap-4">
-            {/* ডেস্কটপ ইউজার বাটন */}
+          {/* RIGHT — User Menu + Mobile Toggle */}
+          <div className="flex items-center gap-4">
+            {/* Desktop User Menu */}
             <div className="relative hidden md:block">
               <button
                 className="text-[#ff014f] p-2 rounded-full hover:bg-[#ff014f]/15 transition-all duration-300 focus:outline-none"
@@ -78,7 +78,7 @@ const Header = () => {
               )}
             </div>
 
-            {/* মোবাইল মেনু বাটন */}
+            {/* Mobile Menu Button */}
             <button
               className="md:hidden text-[#ff014f] p-2 rounded-lg hover:bg-[#ff014f]/10 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -91,10 +91,10 @@ const Header = () => {
         </div>
       </div>
 
-      {/* মোবাইল ড্রপডাউন */}
+      {/* Mobile Dropdown */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black/95 border-t border-[#ff014f]/20 backdrop-blur-md">
-          <div className="px-4 py-5 flex flex-col gap-2">
+        <div className="md:hidden bg-black/95 border-t border-[#ff014f]/20 backdrop-blur-md animate-slideDown">
+          <div className="px-4 py-5 flex flex-col gap-3">
             {menuItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -115,6 +115,17 @@ const Header = () => {
           </div>
         </div>
       )}
+
+      {/* Tailwind animation for mobile */}
+      <style>{`
+        @keyframes slideDown {
+          0% { transform: translateY(-100%); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out forwards;
+        }
+      `}</style>
     </header>
   );
 };
