@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Home, User, FolderKanban, Mail, Menu, X, UserCircle, Settings, LogOut } from "lucide-react";
 
-import logo from "../../../assets/Image/12.png";
+import logo from "../../../assets/Image/fb6c7776-e933-437f-85d7-a75ddd2d7e7f.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
+  // নেভিগেশন লিঙ্কগুলোর লিস্ট
   const menuItems = [
     { to: "/", icon: Home, label: "Home" },
     { to: "/about", icon: User, label: "About" },
@@ -17,12 +18,12 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-[#212428] backdrop-blur-md border-b border-[#ff014f]/20 text-white shadow-lg">
-      <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* মেইন কন্টেইনার — সব সেকশনের সাথে alignment এর জন্য */}
+      <div className="max-w-[68.5%] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
-
           {/* LEFT — Logo + Name */}
           <div className="flex items-center gap-4 flex-shrink-0">
-            <div className="w-12 h-22 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#ff014f]/70 shadow-md hover:shadow-[#ff014f]/30 hover:scale-105 transition-all duration-300">
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#ff014f]/70 shadow-md hover:shadow-[#ff014f]/30 hover:scale-105 transition-all duration-300">
               <img src={logo} alt="Profile" className="w-full h-full object-cover" />
             </div>
             <h1 className="text-lg md:text-2xl font-bold tracking-tight">SHIFAT</h1>
@@ -87,7 +88,6 @@ const Header = () => {
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
-
         </div>
       </div>
 
@@ -128,6 +128,6 @@ const Header = () => {
       `}</style>
     </header>
   );
-};
+}
 
 export default Header;

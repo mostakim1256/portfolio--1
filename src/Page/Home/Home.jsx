@@ -30,7 +30,7 @@ const Home = () => {
     await loadFull(engine);
   }, []);
 
-  // স্লাইডারের টেক লিস্ট (এখানেই রাখা আছে)
+  // স্লাইডারের টেক লিস্ট
   const techItems = [
     { icon: "fab fa-html5", name: "HTML5" },
     { icon: "fab fa-css3-alt", name: "CSS3" },
@@ -50,31 +50,68 @@ const Home = () => {
 
   return (
     <div className="relative bg-[#212428] text-white overflow-hidden">
-      {/* PARTICLES */}
+      {/* PARTICLES - পুরো ব্যাকগ্রাউন্ডে মুভমেন্ট */}
       <Particles
         id="tsparticles"
         init={particlesInit}
         options={{
           fullScreen: { enable: true },
+          fpsLimit: 120,
           particles: {
-            number: { value: 60 },
-            color: { value: "#ff014f" },
-            shape: { type: "circle" },
-            opacity: { value: 0.5 },
-            size: { value: { min: 1, max: 4 } },
-            move: { enable: true, speed: 2 },
+            number: { value: 50, density: { enable: true, value_area: 800 } },
+            color: { value: ["#ff014f", "#ff4d6d", "#ff758c", "#4ecdc4"] },
+            shape: { type: ["circle", "triangle", "polygon"] },
+            opacity: {
+              value: 0.6,
+              random: true,
+              anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false },
+            },
+            size: {
+              value: 3,
+              random: true,
+              anim: { enable: true, speed: 4, size_min: 0.3, sync: false },
+            },
+            line_linked: {
+              enable: true,
+              distance: 180,
+              color: "#ff014f",
+              opacity: 0.35,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 1.8,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false,
+              attract: { enable: false },
+            },
           },
-          detectRetina: true,
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: false },
+              resize: true,
+            },
+            modes: {
+              grab: { distance: 220, line_linked: { opacity: 0.6 } },
+            },
+          },
+          retina_detect: true,
+          background: { color: "#212428" },
         }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 pointer-events-none"
       />
 
       {/* HERO SECTION */}
-      <section className="relative z-10 min-h-screen py-24 md:py-32 px-4 sm:px-6 lg:px-8">
+      <section className="relative z-10 min-h-screen py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[84%] mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
             {/* LEFT - Text Content */}
-            <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 text-center lg:text-left">
+            <div className="w-full lg:w-1/2 space-y-4 md:space-y-6 text-center lg:text-left">
               <p className="text-lg md:text-xl text-gray-400 tracking-wide">
                 Welcome to my world
               </p>
@@ -85,10 +122,10 @@ const Home = () => {
 
               <h2
                 ref={typedRef}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold min-h-[60px] text-[#FF014F]"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold min-h-[50px] text-[#FF014F]"
               />
 
-              <p className="text-lg md:text-xl leading-relaxed text-gray-300 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-base md:text-lg leading-relaxed text-gray-300 max-w-2xl mx-auto lg:mx-0">
                 I build modern, fast and responsive web applications using
                 <br className="hidden sm:block" />
                 <span className="font-semibold text-white">React</span>,
@@ -97,54 +134,35 @@ const Home = () => {
               </p>
 
               {/* SOCIAL ICONS */}
-              <div className="flex justify-center lg:justify-start gap-4 mt-6">
-                <a
-                  href="#"
-                  className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300"
-                >
+              <div className="flex justify-center lg:justify-start gap-4 mt-4">
+                <a href="#" className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300">
                   <Linkedin size={24} />
                 </a>
-                <a
-                  href="#"
-                  className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300"
-                >
+                <a href="#" className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300">
                   <Github size={24} />
                 </a>
-                <a
-                  href="#"
-                  className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300"
-                >
+                <a href="#" className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300">
                   <Twitter size={24} />
                 </a>
-                <a
-                  href="#"
-                  className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300"
-                >
+                <a href="#" className="p-3 bg-[#FF014F]/20 rounded-full hover:bg-[#FF014F] hover:scale-110 transition-all duration-300">
                   <Instagram size={24} />
                 </a>
               </div>
 
               {/* BUTTONS */}
-              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 md:gap-6 mt-8">
-                <a
-                  href="#"
-                  className="px-8 py-4 bg-[#ff014f] rounded-lg font-bold text-lg hover:bg-[#e6003d] transition-all duration-300 shadow-lg hover:shadow-[#ff014f]/40"
-                >
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 md:gap-6 mt-6">
+                <a href="#" className="px-8 py-3.5 bg-[#ff014f] rounded-lg font-bold text-lg hover:bg-[#e6003d] transition-all duration-300 shadow-lg hover:shadow-[#ff014f]/40">
                   Hire Me
                 </a>
 
-                <a
-                  href={cv}
-                  download
-                  className="px-8 py-4 bg-transparent border-2 border-[#ff014f] text-[#ff014f] rounded-lg font-bold text-lg hover:bg-[#ff014f] hover:text-white transition-all duration-300"
-                >
+                <a href={cv} download className="px-8 py-3.5 bg-transparent border-2 border-[#ff014f] text-[#ff014f] rounded-lg font-bold text-lg hover:bg-[#ff014f] hover:text-white transition-all duration-300">
                   Download CV
                 </a>
               </div>
             </div>
 
             {/* RIGHT - Image */}
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0">
               <div className="relative max-w-md lg:max-w-lg w-full">
                 <img
                   src={bg}
@@ -161,15 +179,50 @@ const Home = () => {
         </div>
       </section>
 
+      {/* === নতুন যোগ করা Stats Section (তোমার অভিজ্ঞতা দেখানোর জন্য) === */}
+      <section className="relative z-10 py-12 md:py-6 bg-[#212428]/50 mb-30 shadow-black shadow-md ">
+        <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-white">
+            My Work & Experience
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+            {/* React Projects */}
+            <div className="bg-[#2a2d33] p-6 rounded-xl border border-[#FF014F]/20 hover:border-[#FF014F]/50 transition-all">
+              <h3 className="text-5xl md:text-6xl font-bold text-[#FF014F]">50+</h3>
+              <p className="text-lg md:text-xl mt-3 text-gray-300">React Projects</p>
+            </div>
+
+            {/* Wix Websites */}
+            <div className="bg-[#2a2d33] p-6 rounded-xl border border-[#FF014F]/20 hover:border-[#FF014F]/50 transition-all">
+              <h3 className="text-5xl md:text-6xl font-bold text-[#FF014F]">150+</h3>
+              <p className="text-lg md:text-xl mt-3 text-gray-300">Wix Websites</p>
+            </div>
+
+            {/* Squarespace */}
+            <div className="bg-[#2a2d33] p-6 rounded-xl border border-[#FF014F]/20 hover:border-[#FF014F]/50 transition-all">
+              <h3 className="text-5xl md:text-6xl font-bold text-[#FF014F]">90+</h3>
+              <p className="text-lg md:text-xl mt-3 text-gray-300">Squarespace Sites</p>
+            </div>
+
+            {/* App Development */}
+            <div className="bg-[#2a2d33] p-6 rounded-xl border border-[#FF014F]/20 hover:border-[#FF014F]/50 transition-all">
+              <h3 className="text-5xl md:text-6xl font-bold text-[#FF014F]">100+</h3>
+              <p className="text-lg md:text-xl mt-3 text-gray-300">App Developments</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Heronice Section */}
       <div className="relative z-10">
         <Heronice />
       </div>
 
-      {/* === স্লাইডার সেকশন যোগ করা হয়েছে === */}
-      <section className="relative z-10 py-12 md:py-20">
+      {/* Technologies Slider Section */}
+      <section className="relative z-10 py-6 md:py-10 lg:py-12">
         <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8 text-white">
             Technologies I Work With
           </h2>
 
@@ -286,6 +339,6 @@ const Home = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Home;
