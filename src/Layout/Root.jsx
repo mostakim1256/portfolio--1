@@ -7,7 +7,7 @@ const Root = () => {
     return (
         <div className='bg-[#212428] '>
             <div className='container mx-auto  '>
-            <Navbar ssf></Navbar>
+            <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>
