@@ -2,86 +2,91 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-cover text-base-content pt-10 pb-12 md:pb-16">
-      {/* উপরের সাদা লাইন */}
-      <div className="absolute top-0 left-0 w-full h-px bg-white/70"></div>
+    <footer className="relative bg-[#1B1F23] text-base-content pt-12 pb-14 md:pb-18">
+      {/* Top border */}
+      <div className="absolute top-0 left-0 w-full h-px bg-white/20"></div>
 
-      {/* মূল কন্টেন্ট — Header-এর সাথে align করার জন্য */}
-      <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+
+        {/* Footer Grid */}
+        <div className="grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          lg:grid-cols-4 
+          gap-10 lg:gap-14">
+
           {/* Services */}
           <nav className="space-y-3">
-            <h6 className="footer-title text-white mb-3 text-lg font-semibold">Services</h6>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Branding
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Design
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Marketing
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Advertisement
-            </a>
+            <h6 className="text-white text-lg font-semibold mb-4">Services</h6>
+            {["Branding", "Design", "Marketing", "Advertisement"].map((item) => (
+              <a
+                key={item}
+                className="block text-gray-400 hover:text-[#FF014F] transition"
+              >
+                {item}
+              </a>
+            ))}
           </nav>
 
           {/* Company */}
           <nav className="space-y-3">
-            <h6 className="footer-title text-white mb-3 text-lg font-semibold">Company</h6>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              About us
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Contact
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Jobs
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Press kit
-            </a>
+            <h6 className="text-white text-lg font-semibold mb-4">Company</h6>
+            {["About us", "Contact", "Jobs", "Press kit"].map((item) => (
+              <a
+                key={item}
+                className="block text-gray-400 hover:text-[#FF014F] transition"
+              >
+                {item}
+              </a>
+            ))}
           </nav>
 
           {/* Legal */}
           <nav className="space-y-3">
-            <h6 className="footer-title text-white mb-3 text-lg font-semibold">Legal</h6>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Terms of use
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Privacy policy
-            </a>
-            <a className="link link-hover block text-gray-300 hover:text-[#FF014F] transition-colors">
-              Cookie policy
-            </a>
+            <h6 className="text-white text-lg font-semibold mb-4">Legal</h6>
+            {["Terms of use", "Privacy policy", "Cookie policy"].map((item) => (
+              <a
+                key={item}
+                className="block text-gray-400 hover:text-[#FF014F] transition"
+              >
+                {item}
+              </a>
+            ))}
           </nav>
 
           {/* Newsletter */}
-          <div className="space-y-4 lg:col-span-1">
-            <h6 className="footer-title text-white mb-3 text-lg font-semibold">Newsletter</h6>
-            <form className="w-full max-w-xs">
-              <label className="text-gray-300 mb-2 block text-sm">
+          <div className="space-y-5 lg:col-span-1">
+            <h6 className="text-white text-lg font-semibold mb-4">
+              Newsletter
+            </h6>
+
+            <form className="space-y-3">
+              <label className="text-gray-400 text-sm block">
                 Enter your email address
               </label>
-              <div className="join w-full">
+
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
-                  type="text"
+                  type="email"
                   placeholder="username@site.com"
-                  className="input input-bordered join-item flex-1 bg-transparent text-white placeholder-gray-500 border-gray-600 focus:border-[#FF014F]"
+                  className="w-full px-4 py-3 rounded-lg bg-transparent border border-gray-600 text-white focus:border-[#FF014F] outline-none"
                 />
-                <button className="btn bg-[#FF014F] hover:bg-[#e6003d] join-item text-white border-none">
+
+                <button className="px-6 py-3 rounded-lg bg-[#FF014F] hover:bg-[#e6003d] text-white transition w-full sm:w-auto">
                   Subscribe
                 </button>
               </div>
             </form>
           </div>
+
         </div>
 
-        {/* Optional: Copyright line */}
-        <div className="mt-12 pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
+        {/* Copyright */}
+        <div className="mt-14 pt-6 border-t border-white/10 text-center text-gray-500 text-sm">
           © {new Date().getFullYear()} SHIFAT. All rights reserved.
         </div>
+
       </div>
     </footer>
   );

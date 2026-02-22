@@ -17,14 +17,14 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-[#212428] backdrop-blur-md border-b border-[#ff014f]/20 text-white shadow-lg">
-      
-      {/* Container Responsive */}
+
+      {/* Container */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
 
-          {/* Logo Section */}
-          <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
-            <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#ff014f]/70 shadow-md transition-transform hover:scale-105">
+          {/* Logo */}
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#ff014f]/70 transition-transform hover:scale-105">
               <img src={logo} alt="Profile" className="w-full h-full object-cover" />
             </div>
 
@@ -34,7 +34,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex flex-1 justify-center gap-6 lg:gap-8">
+          <nav className="hidden md:flex flex-1 justify-center gap-6 lg:gap-10">
             {menuItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -54,7 +54,7 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Right Section */}
+          {/* Right Side */}
           <div className="flex items-center gap-3 md:gap-5">
 
             {/* User Menu */}
@@ -98,31 +98,33 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-black/95 border-t border-[#ff014f]/20 backdrop-blur-md">
-          <div className="px-4 py-5 flex flex-col gap-3">
-            {menuItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={() => setIsMenuOpen(false)}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-5 py-4 rounded-xl text-base font-medium
-                  ${
-                    isActive
-                      ? "bg-[#ff014f]/20 text-[#ff014f] border border-[#ff014f]/50"
-                      : "text-gray-200 hover:text-[#ff014f] hover:bg-[#ff014f]/10"
-                  }`
-                }
-              >
-                <item.icon size={22} />
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
+      {/* Mobile Menu Smooth Animation */}
+      <div
+        className={`md:hidden bg-black/95 border-t border-[#ff014f]/20 backdrop-blur-md overflow-hidden transition-all duration-300 ${
+          isMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-4 py-5 flex flex-col gap-3">
+          {menuItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              onClick={() => setIsMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-5 py-4 rounded-xl text-base font-medium transition-all duration-300
+                ${
+                  isActive
+                    ? "bg-[#ff014f]/20 text-[#ff014f] border border-[#ff014f]/50"
+                    : "text-gray-200 hover:text-[#ff014f] hover:bg-[#ff014f]/10"
+                }`
+              }
+            >
+              <item.icon size={22} />
+              {item.label}
+            </NavLink>
+          ))}
         </div>
-      )}
+      </div>
 
     </header>
   );
