@@ -85,8 +85,8 @@ const Navbar = () => {
                   href={item.href}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     isActive
-                      ? "bg-[#FF014F] text-white shadow-[0_0_20px_rgba(255,1,79,0.4)]"
-                      : "text-gray-300 hover:text-white hover:bg-white/[0.05]"
+                      ? "bg-[#FF014F]/15 text-[#FF014F] border border-[#FF014F]/40 shadow-[0_0_15px_rgba(255,1,79,0.25)] font-semibold"
+                      : "text-gray-300 hover:text-[#FF014F] hover:bg-white/[0.04]"
                   }`}
                 >
                   <Icon size={15} />
@@ -136,8 +136,8 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   isActive
-                    ? "bg-[#FF014F] text-white shadow-[0_0_15px_rgba(255,1,79,0.35)]"
-                    : "text-gray-300 hover:bg-white/[0.05] hover:text-white"
+                    ? "bg-[#FF014F]/15 text-[#FF014F] border border-[#FF014F]/40 font-semibold"
+                    : "text-gray-300 hover:bg-white/[0.04] hover:text-[#FF014F]"
                 }`}
               >
                 <Icon size={18} />

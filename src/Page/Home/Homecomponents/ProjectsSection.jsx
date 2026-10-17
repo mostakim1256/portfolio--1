@@ -181,13 +181,13 @@ export default function ProjectsSection() {
                 onClick={() => setActiveFilter(cat.id)}
                 className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${
                   activeFilter === cat.id
-                    ? "bg-[#FF014F] text-white shadow-[0_0_20px_rgba(255,1,79,0.4)] scale-105"
-                    : "bg-white/[0.03] text-gray-400 hover:text-white hover:bg-white/[0.08] border border-white/[0.06]"
+                    ? "bg-[#FF014F]/15 text-[#FF014F] border border-[#FF014F]/50 shadow-[0_0_15px_rgba(255,1,79,0.25)] font-bold scale-105"
+                    : "bg-white/[0.03] text-gray-400 hover:text-[#FF014F] hover:bg-white/[0.06] border border-white/[0.06]"
                 }`}
               >
                 <span>{cat.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                  activeFilter === cat.id ? "bg-white/20 text-white" : "bg-white/5 text-gray-400"
+                <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                  activeFilter === cat.id ? "bg-[#FF014F]/20 text-[#FF014F]" : "bg-white/5 text-gray-400"
                 }`}>
                   {count}
                 </span>
@@ -261,7 +261,7 @@ export default function ProjectsSection() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white group-hover:text-[#FF014F] transition-colors bg-white/[0.03] hover:bg-[#FF014F] px-4 py-2 rounded-xl border border-white/[0.08] hover:border-[#FF014F] transition-all duration-300 w-full justify-center shadow-md"
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white hover:text-[#FF014F] bg-white/[0.04] hover:bg-[#FF014F]/15 px-4 py-2.5 rounded-xl border border-white/[0.08] hover:border-[#FF014F]/60 hover:shadow-[0_0_20px_rgba(255,1,79,0.25)] transition-all duration-300 w-full justify-center"
                   >
                     <Globe size={14} />
                     <span>Visit Live Website</span>

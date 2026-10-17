@@ -131,7 +131,7 @@ export default function ContactSection() {
                     className="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#FF014F]/40 hover:bg-white/[0.05] transition-all duration-300 group"
                   >
                     <div className="flex items-center gap-3.5">
-                      <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white/[0.04] border border-white/[0.08] group-hover:bg-[#FF014F] group-hover:border-[#FF014F] group-hover:text-white transition-all">
+                      <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white/[0.04] border border-white/[0.08] group-hover:border-[#FF014F]/60 group-hover:bg-[#FF014F]/10 group-hover:shadow-[0_0_15px_rgba(255,1,79,0.25)] transition-all">
                         {item.icon}
                       </div>
                       <div>
@@ -158,7 +158,7 @@ export default function ContactSection() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F] hover:text-white text-gray-300 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                        className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F]/15 text-gray-300 hover:text-[#FF014F] hover:shadow-[0_0_15px_rgba(255,1,79,0.35)] flex items-center justify-center transition-all duration-300 hover:scale-110"
                         aria-label={social.label}
                       >
                         <Icon size={18} />

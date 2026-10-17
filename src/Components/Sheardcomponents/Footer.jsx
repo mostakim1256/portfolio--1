@@ -77,7 +77,7 @@ const Footer = () => {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F] text-gray-300 hover:text-white flex items-center justify-center transition-all duration-300"
+                    className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F]/15 text-gray-300 hover:text-[#FF014F] hover:shadow-[0_0_15px_rgba(255,1,79,0.3)] flex items-center justify-center transition-all duration-300 hover:scale-110"
                     aria-label={item.label}
                   >
                     <Icon size={16} />
@@ -91,7 +91,7 @@ const Footer = () => {
               className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-[#FF014F] transition-colors group mt-2"
             >
               <span>Back to Top</span>
-              <div className="w-7 h-7 rounded-full bg-white/[0.04] border border-white/[0.08] group-hover:border-[#FF014F] flex items-center justify-center transition-all">
+              <div className="w-7 h-7 rounded-full bg-white/[0.04] border border-white/[0.08] group-hover:border-[#FF014F] group-hover:bg-[#FF014F]/15 text-gray-400 group-hover:text-[#FF014F] flex items-center justify-center transition-all">
                 <ArrowUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </button>

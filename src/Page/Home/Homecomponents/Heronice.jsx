@@ -93,8 +93,8 @@ export default function WhatIDo() {
               <div>
                 {/* Header: Icon & Badge */}
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-[#FF014F]/10 border border-[#FF014F]/30 group-hover:bg-[#FF014F] group-hover:border-[#FF014F] transition-all duration-300">
-                    <span className="group-hover:text-white transition-colors duration-300">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-white/[0.03] border border-white/[0.08] group-hover:border-[#FF014F]/60 group-hover:bg-[#FF014F]/10 group-hover:shadow-[0_0_20px_rgba(255,1,79,0.25)] transition-all duration-300">
+                    <span className="text-[#FF014F] group-hover:scale-110 transition-transform duration-300">
                       {item.icon}
                     </span>
                   </div>

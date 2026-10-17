@@ -180,7 +180,7 @@ const Home = () => {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F] text-gray-300 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+                      className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F]/15 text-gray-300 hover:text-[#FF014F] hover:shadow-[0_0_15px_rgba(255,1,79,0.35)] flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
                       aria-label={item.label}
                     >
                       <Icon size={18} />
