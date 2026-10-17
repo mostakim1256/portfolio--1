@@ -16,7 +16,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[#212428] backdrop-blur-md border-b border-[#ff014f]/20 text-white shadow-lg">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#1D1F24] backdrop-blur-md border-b border-[#ff014f]/20 text-white shadow-lg">
 
       {/* Container */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

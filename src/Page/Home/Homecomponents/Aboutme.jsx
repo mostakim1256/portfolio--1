@@ -1,9 +1,9 @@
 import React from "react";
-import bg from "../../../assets/Image/banner-01.png"; // তোমার ছবি
+import bg from "../../../assets/Image/ChatGPT_Image_Feb_9__2026__12_21_30_PM-removebg-preview.png"; // তোমার ছবি
 
 export default function AboutMe() {
   return (
-    <section className="relative bg-[#212428] text-white p-12 md:py-16 lg:py-20 overflow-hidden">
+    <section className="relative bg-[#1D1F24] text-white p-12 md:py-16 lg:py-20 overflow-hidden">
       {/* Header-এর সাথে align করার জন্য */}
       <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8  justify-between">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-12 items-center">
@@ -20,7 +20,7 @@ export default function AboutMe() {
                 }}
               />
               {/* স্মুথ ফেইড */}
-              <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#212428] z-20 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#1D1F24] z-20 pointer-events-none" />
             </div>
           </div>
 

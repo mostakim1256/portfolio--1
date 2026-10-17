@@ -5,20 +5,21 @@ import { loadFull } from "tsparticles";
 
 import Heronice from "./Homecomponents/Heronice";
 import AboutMe from "./Homecomponents/Aboutme";
-import { Linkedin, Github, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Github, Twitter, Instagram, Code2, Globe, Users, Star } from "lucide-react";
 
 import cv from "../../assets/Image/shifat cv.pdf";
-import bg from "../../assets/Image/ChatGPT_Image_Feb_9__2026__12_21_30_PM-removebg-preview.png";
+import bg from "../../assets/Image/63d67696-5794-4197-a2ce-73042459eca0-removebg-preview (1).png";
 
 const Home = () => {
   const typedRef = useRef(null);
 
   useEffect(() => {
     const typed = new Typed(typedRef.current, {
-      strings: ["Frontend Developer", "I build Modern Web Applications"],
+      strings: ["Frontend Developer ", "Modern Web Apps And"],
       typeSpeed: 50,
       backSpeed: 40,
       loop: true,
+      showCursor: false,
     });
 
     return () => typed.destroy();
@@ -28,19 +29,8 @@ const Home = () => {
     await loadFull(engine);
   }, []);
 
-  const techItems = [
-    { icon: "fab fa-html5", name: "HTML5" },
-    { icon: "fab fa-css3-alt", name: "CSS3" },
-    { icon: "fab fa-js", name: "JavaScript" },
-    { icon: "fab fa-react", name: "React.js" },
-    { icon: "fab fa-node-js", name: "Node.js" },
-    { icon: "fas fa-database", name: "MongoDB" },
-    { icon: "fab fa-tailwindcss", name: "Tailwind CSS" },
-    { icon: "fas fa-code", name: "TypeScript" }
-  ];
-
   return (
-    <div className="relative bg-[#212428] text-white overflow-hidden">
+    <div className="relative bg-[#1D1F24] text-white overflow-hidden">
 
       {/* Particle Background */}
       <Particles
@@ -79,7 +69,7 @@ const Home = () => {
 
               <h2
                 ref={typedRef}
-                className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FF014F] min-h-[60px]"
+                className="text-2xl sm:text-4xl lg:text-5xl whitespace-nowrap font-bold text-[#FF014F] min-h-[60px]"
               />
 
               <p className="text-gray-300 max-w-xl mx-auto lg:mx-0 text-sm sm:text-base lg:text-lg">
@@ -114,68 +104,97 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Image */}
-            <div className="flex justify-center">
+            {/* Right Image with Live BG Effects */}
+            <div className="flex justify-center relative group w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+
+              {/* 1. Live Animated Background Effects */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                <div className="absolute w-[85%] h-[85%] rounded-full border border-dashed border-[#FF014F]/40 animate-[spin_40s_linear_infinite]" />
+                <div className="absolute w-[75%] h-[75%] rounded-full border-2 border-[#FF014F]/20 bg-gradient-to-tr from-[#FF014F]/10 via-transparent to-[#9b00e8]/10 blur-md animate-[pulse_5s_ease-in-out_infinite]" />
+                <div className="absolute w-[68%] h-[68%] rounded-full bg-gradient-to-tr from-[#FF014F]/25 via-transparent to-[#FF014F]/10 blur-2xl animate-[spin_15s_linear_infinite]" />
+                <div className="absolute w-[65%] h-[65%] rounded-full border border-[#FF014F]/30 animate-[ping_4s_linear_infinite] opacity-25" />
+                <div className="absolute w-[70%] h-[70%] rounded-full border-b-2 border-r-2 border-[#FF014F]/40 animate-[spin_10s_linear_infinite]" />
+              </div>
+
+              {/* 2. Main Profile Image with Smooth Fade Mask */}
               <img
                 src={bg}
                 alt="profile"
-                className="w-full max-w-sm sm:max-w-md lg:max-w-lg object-contain drop-shadow-2xl"
+                className="w-full object-contain drop-shadow-[0_20px_50px_rgba(255,1,79,0.3)] relative z-10 transition-transform duration-500 hover:scale-105"
+                style={{
+                  maskImage: "linear-gradient(to bottom, black 60%, transparent 95%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 95%)",
+                }}
               />
+
+              {/* 3. Smooth Blending Overlay */}
+              <div className="absolute -bottom-2 left-0 w-full h-40 bg-gradient-to-t from-[#1D1F24] via-[#1D1F24]/90 to-transparent z-20 pointer-events-none" />
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="relative z-10 py-16 bg-[#212428]/50">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* iPhone Glass Stats Section */}
+      <section className="relative z-10 pb-16 pt-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-auto mx-auto px-24">
 
-          <h2 className="text-2xl sm:text-4xl font-bold text-center mb-10">
-            My Work & Experience
-          </h2>
+          {/* Frosted Glass Container */}
+          <div className="relative rounded-3xl p-6 sm:p-8 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_0_rgba(255,255,255,0.1)] hover:border-[#FF014F]/30 transition-all duration-500">
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            {/* Background Internal Soft Pink Glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FF014F]/5 via-transparent to-[#FF014F]/5 rounded-3xl pointer-events-none" />
 
-            {[
-              { num: "50+", label: "React Projects" },
-              { num: "150+", label: "Wix Websites" },
-              { num: "90+", label: "Squarespace Sites" },
-              { num: "100+", label: "App Development" }
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="bg-[#2a2d33] p-6 rounded-xl border border-[#FF014F]/20 hover:border-[#FF014F]/50 transition"
-              >
-                <h3 className="text-4xl font-bold text-[#FF014F]">{item.num}</h3>
-                <p className="mt-3 text-gray-300">{item.label}</p>
-              </div>
-            ))}
+            {/* Grid Items */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 relative z-10">
 
-          </div>
-        </div>
-      </section>
+              {[
+                {
+                  icon: Code2,
+                  num: "50+",
+                  label: "Projects Completed"
+                },
+                {
+                  icon: Globe,
+                  num: "150+",
+                  label: "Websites Developed"
+                },
+                {
+                  icon: Users,
+                  num: "90+",
+                  label: "Happy Clients"
+                },
+                {
+                  icon: Star,
+                  num: "100+",
+                  label: "App Development"
+                }
+              ].map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={index}
+                    className={`flex items-center gap-4 sm:gap-5 justify-start lg:justify-center ${
+                      index !== 3 ? "lg:border-r lg:border-white/[0.08]" : ""
+                    } pr-0 lg:pr-4`}
+                  >
+                    {/* Glowing Glass Icon Circle */}
+                    <div className="relative flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-b from-[#FF014F]/20 to-[#FF014F]/5 border border-[#FF014F]/40 shadow-[0_0_15px_rgba(255,1,79,0.35)] group-hover:scale-105 transition-transform duration-300">
+                      <IconComponent className="w-6 h-6 text-[#FF014F]" />
+                    </div>
 
-      {/* Technology Slider */}
-      <section className="py-10 relative z-10">
-        <div className="max-w-7xl mx-auto px-4">
-
-          <h2 className="text-2xl sm:text-4xl font-bold text-center mb-8">
-            Technologies I Work With
-          </h2>
-
-          <div className="overflow-hidden bg-[#2a2d33]/60 border border-[#ff014f]/20 rounded-xl p-6">
-            <div className="flex gap-6 animate-[slide_50s_linear_infinite] w-max">
-
-              {[...techItems, ...techItems].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 bg-[#212428] px-6 py-3 rounded-xl border border-[#ff014f]/20 whitespace-nowrap"
-                >
-                  <i className={`${item.icon} text-[#ff014f] text-xl`}></i>
-                  <span>{item.name}</span>
-                </div>
-              ))}
+                    {/* Text Info */}
+                    <div className="text-left">
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-[#FF014F] tracking-tight leading-none">
+                        {item.num}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-gray-400 font-medium mt-1">
+                        {item.label}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
 
             </div>
           </div>
@@ -184,8 +203,8 @@ const Home = () => {
       </section>
 
       <div className="relative z-10">
-        <Heronice />
         <AboutMe />
+        <Heronice />
       </div>
 
     </div>

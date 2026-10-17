@@ -3,7 +3,7 @@ import ab from "../../../src/assets/Image/portfolio.png";
 
 const Project = () => {
   return (
-    <div className="min-h-screen mx-auto bg-[#212428]">
+    <div className="min-h-screen mx-auto bg-[#1D1F24]">
       <section
         className="
         min-h-screen

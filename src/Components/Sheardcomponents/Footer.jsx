@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#1B1F23] text-base-content pt-12 pb-14 md:pb-18">
+    <footer className="relative bg-[#1D1F24] text-base-content pt-12 pb-14 md:pb-18">
       {/* Top border */}
       <div className="absolute top-0 left-0 w-full h-px bg-white/20"></div>
 

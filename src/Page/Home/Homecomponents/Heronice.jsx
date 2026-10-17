@@ -11,7 +11,7 @@ import {
 export default function WhatIDo() {
   return (
     // 🔽 Section padding কমানো হয়েছে যাতে উপরে-নিচে gap কম থাকে
-    <section className="bg-[#212428] text-white py-8 md:py-10 lg:py-12">
+    <section className="bg-[#1D1F24] text-white py-8 md:py-10 lg:py-12">
 
       {/* মূল কন্টেন্ট কন্টেইনার — Header এর সাথে align */}
       <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8">
