@@ -5,100 +5,125 @@ import {
   Layout,
   Globe,
   Brush,
-  Settings,
-} from "lucide-react"; // lucide-react থেকে আইকনগুলো ইমপোর্ট
+  Zap,
+  Sparkles,
+  ArrowUpRight,
+} from "lucide-react";
 
 export default function WhatIDo() {
+  const services = [
+    {
+      title: "Wix Website Development",
+      description:
+        "Building high-converting, modern, and SEO-friendly sites using Wix Studio & Editor. Custom Velo coding, eCommerce store setup, and redesigns.",
+      icon: <Brush size={28} className="text-[#FF014F]" />,
+      badge: "45+ Delivered",
+    },
+    {
+      title: "Squarespace Customization",
+      description:
+        "Designing bespoke, clean, and elegant Squarespace websites utilizing Fluid Engine, custom CSS injection, and responsive typography.",
+      icon: <Globe size={28} className="text-[#FF014F]" />,
+      badge: "CMS Expert",
+    },
+    {
+      title: "MERN Stack Frontend",
+      description:
+        "Building dynamic, scalable single-page web applications using React.js, Tailwind CSS, modern state management, and REST APIs.",
+      icon: <Code size={28} className="text-[#FF014F]" />,
+      badge: "React & Tailwind",
+    },
+    {
+      title: "Figma to Live Website",
+      description:
+        "Converting Figma, Adobe XD, or Sketch mockups into 100% pixel-perfect live websites on Wix, Squarespace, or custom React code.",
+      icon: <Layout size={28} className="text-[#FF014F]" />,
+      badge: "Design to Code",
+    },
+    {
+      title: "Mobile-First Responsive Design",
+      description:
+        "Ensuring your web presence looks flawless and operates smoothly across all device sizes—from mobile phones to ultra-wide displays.",
+      icon: <Smartphone size={28} className="text-[#FF014F]" />,
+      badge: "Cross-Device",
+    },
+    {
+      title: "Speed, SEO & Optimization",
+      description:
+        "Boosting Google Lighthouse speed scores, improving core web vitals, on-page SEO meta tags, and structured clean code.",
+      icon: <Zap size={28} className="text-[#FF014F]" />,
+      badge: "Speed & Ranking",
+    },
+  ];
+
   return (
-    // 🔽 Section padding কমানো হয়েছে যাতে উপরে-নিচে gap কম থাকে
-    <section className="bg-[#1D1F24] text-white py-8 md:py-10 lg:py-12">
+    <section id="services" className="relative bg-[#0e1118] text-white py-20 lg:py-28 overflow-hidden">
+      
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-[#FF014F]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-purple-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* মূল কন্টেন্ট কন্টেইনার — Header এর সাথে align */}
-      <div className="max-w-[84%] mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* ===== Title Section ===== */}
-        <div className="text-left mb-10">
-          {/* ছোট subtitle */}
-          <p className="text-[#FF014F] font-semibold tracking-wider uppercase text-sm md:text-base">
-            Features
-          </p>
-
-          {/* Main heading */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FF014F]/10 border border-[#FF014F]/30 text-[#FF014F] text-sm font-semibold tracking-wide uppercase mb-3">
+            <Sparkles size={14} />
+            <span>My Core Expertise</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
             What <span className="text-[#FF014F]">I Do</span>
-          </h1>
+          </h2>
+          <p className="mt-4 text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+            From custom React web applications to high-impact Wix & Squarespace platforms—delivering results that elevate businesses.
+          </p>
+          <div className="w-20 h-1 bg-gradient-to-r from-[#FF014F] to-transparent mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* ===== Cards Grid ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-          {[
-            {
-              title: "Frontend Developer",
-              description:
-                "I build responsive and dynamic web applications using React, Tailwind, and modern JavaScript.",
-              icon: <Code size={32} strokeWidth={2} />,
-            },
-            {
-              title: "App Developer",
-              description:
-                "I create fast and user-friendly applications with clean UI and smooth functionality.",
-              icon: <Smartphone size={32} strokeWidth={2} />,
-            },
-            {
-              title: "UX/UI Developer",
-              description:
-                "Designing intuitive interfaces and better user experiences is one of my strengths.",
-              icon: <Layout size={32} strokeWidth={2} />,
-            },
-            {
-              title: "Squarespace Developer",
-              description:
-                "I design and customize professional Squarespace websites for clients.",
-              icon: <Globe size={32} strokeWidth={2} />,
-            },
-            {
-              title: "Wix Developer",
-              description:
-                "I build modern and responsive websites using Wix platform.",
-              icon: <Brush size={32} strokeWidth={2} />,
-            },
-            {
-              title: "Process Optimization",
-              description:
-                "I improve workflows and create efficient digital solutions.",
-              icon: <Settings size={32} strokeWidth={2} />,
-            },
-          ].map((item, index) => (
+        {/* Services Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {services.map((item, index) => (
             <div
               key={index}
-              className="
-                group relative bg-[#2a2d33] rounded-2xl p-6
-                transition-all duration-500
-                hover:scale-[1.03] hover:-translate-y-2
-                hover:shadow-[0_20px_50px_-15px_rgba(255,1,79,0.45)]
-              "
+              className="group relative rounded-2xl p-7 bg-[#131620] border border-white/[0.08] hover:border-[#FF014F]/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(255,1,79,0.25)] flex flex-col justify-between"
             >
-              {/* Hover gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#FF014F]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Subtle top card glow */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FF014F]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div>
+                {/* Header: Icon & Badge */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-[#FF014F]/10 border border-[#FF014F]/30 group-hover:bg-[#FF014F] group-hover:border-[#FF014F] transition-all duration-300">
+                    <span className="group-hover:text-white transition-colors duration-300">
+                      {item.icon}
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/[0.04] text-gray-400 border border-white/[0.06] group-hover:text-white group-hover:border-[#FF014F]/30 transition-colors">
+                    {item.badge}
+                  </span>
+                </div>
 
-              {/* Icon circle */}
-              <div className="w-16 h-16 rounded-full border-4 border-[#FF014F]/70 mb-6 flex items-center justify-center text-[#FF014F]">
-                {item.icon}
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF014F] transition-colors duration-300 flex items-center justify-between">
+                  <span>{item.title}</span>
+                  <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF014F]" />
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {item.description}
+                </p>
               </div>
 
-              {/* Card title */}
-              <h3 className="text-xl font-semibold mb-3">
-                {item.title}
-              </h3>
-
-              {/* Card description */}
-              <p className="text-gray-400 leading-relaxed text-sm">
-                {item.description}
-              </p>
+              {/* Bottom decorative bar */}
+              <div className="mt-6 pt-4 border-t border-white/[0.04] flex items-center justify-between text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
+                <span>Tailored Solutions</span>
+                <span className="text-[#FF014F] font-semibold">0{index + 1}</span>
+              </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

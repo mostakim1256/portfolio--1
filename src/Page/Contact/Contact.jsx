@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import ContactSection from "../Home/Homecomponents/ContactSection";
 
 const Contact = () => {
-    return (
-        <div>
-            <h1>This is contact page</h1>
-        </div>
-    );
+  return (
+    <div className="pt-24 min-h-screen bg-[#0e1118]">
+      <ContactSection />
+    </div>
+  );
 };
 
 export default Contact;
