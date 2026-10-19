@@ -251,12 +251,20 @@ const Home = () => {
                 <div className="absolute w-64 h-64 sm:w-76 sm:h-76 lg:w-88 lg:h-88 rounded-full border-4 border-[#00DF82] shadow-[0_0_50px_rgba(0,223,130,0.5),inset_0_0_30px_rgba(0,223,130,0.3)] animate-pulse" />
                 <div className="absolute w-60 h-60 sm:w-72 sm:h-72 lg:w-84 lg:h-84 rounded-full bg-gradient-to-tr from-[#00DF82]/20 via-emerald-600/10 to-transparent blur-xl pointer-events-none" />
 
-                {/* Main Profile Image */}
-                <img
-                  src={bg}
-                  alt="Mostakim Hossain Shifat"
-                  className="w-full object-contain relative z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:scale-102"
-                />
+                {/* Main Profile Image with seamless bottom blend */}
+                <div className="relative z-10 w-full flex items-center justify-center">
+                  <img
+                    src={bg}
+                    alt="Mostakim Hossain Shifat"
+                    style={{
+                      maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 98%)",
+                      WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 98%)",
+                    }}
+                    className="w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:scale-102"
+                  />
+                  {/* Additional soft gradient blend into #08090D background */}
+                  <div className="absolute -bottom-1 left-0 right-0 h-28 bg-gradient-to-t from-[#08090D] via-[#08090D]/75 to-transparent pointer-events-none" />
+                </div>
 
                 {/* Decorative Script "Code Create Inspire" on the right */}
                 <div className="absolute -right-4 sm:-right-8 top-1/2 -translate-y-1/2 rotate-12 z-20 pointer-events-none hidden sm:block">
