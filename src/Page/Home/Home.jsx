@@ -247,23 +247,23 @@ const Home = () => {
               {/* Main Photo with Vibrant Neon Green Circular Ring */}
               <div className="relative w-72 sm:w-80 lg:w-96 flex items-center justify-center">
 
-                {/* Glowing Circular Ring behind him! */}
-                <div className="absolute w-64 h-64 sm:w-76 sm:h-76 lg:w-88 lg:h-88 rounded-full border-4 border-[#00DF82] shadow-[0_0_50px_rgba(0,223,130,0.5),inset_0_0_30px_rgba(0,223,130,0.3)] animate-pulse" />
-                <div className="absolute w-60 h-60 sm:w-72 sm:h-72 lg:w-84 lg:h-84 rounded-full bg-gradient-to-tr from-[#00DF82]/20 via-emerald-600/10 to-transparent blur-xl pointer-events-none" />
+                {/* Glowing Circular Ring strictly BEHIND the image (z-0) */}
+                <div className="absolute top-2 sm:top-4 lg:top-6 w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full border-4 border-[#00DF82] shadow-[0_0_50px_rgba(0,223,130,0.5),inset_0_0_30px_rgba(0,223,130,0.3)] animate-pulse z-0 pointer-events-none" />
+                <div className="absolute top-2 sm:top-4 lg:top-6 w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full bg-gradient-to-tr from-[#00DF82]/25 via-emerald-600/10 to-transparent blur-2xl z-0 pointer-events-none" />
 
-                {/* Main Profile Image with seamless bottom blend */}
+                {/* Main Profile Image - strictly in FRONT on top of circle (z-10) */}
                 <div className="relative z-10 w-full flex items-center justify-center">
                   <img
                     src={bg}
                     alt="Mostakim Hossain Shifat"
                     style={{
-                      maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 98%)",
-                      WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 98%)",
+                      maskImage: "linear-gradient(to bottom, black 82%, transparent 99%)",
+                      WebkitMaskImage: "linear-gradient(to bottom, black 82%, transparent 99%)",
                     }}
-                    className="w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:scale-102"
+                    className="w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:scale-102 select-none"
                   />
-                  {/* Additional soft gradient blend into #08090D background */}
-                  <div className="absolute -bottom-1 left-0 right-0 h-28 bg-gradient-to-t from-[#08090D] via-[#08090D]/75 to-transparent pointer-events-none" />
+                  {/* Subtle blend only at the bottom edge */}
+                  <div className="absolute -bottom-1 left-0 right-0 h-14 bg-gradient-to-t from-[#08090D] via-[#08090D]/80 to-transparent pointer-events-none" />
                 </div>
 
                 {/* Decorative Script "Code Create Inspire" on the right */}
