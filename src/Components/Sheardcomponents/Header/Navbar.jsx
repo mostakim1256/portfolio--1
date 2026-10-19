@@ -99,7 +99,7 @@ const Navbar = () => {
             {/* Download CV Button */}
             <a
               href={cv}
-              download
+              download="Mostakim_Hossain_Shifat_CV.pdf"
               className="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_20px_rgba(0,223,130,0.35)] hover:shadow-[0_0_25px_rgba(0,223,130,0.55)] transition-all duration-300 hover:scale-105"
             >
               <span>Download CV</span>
@@ -146,7 +146,7 @@ const Navbar = () => {
 
           <a
             href={cv}
-            download
+            download="Mostakim_Hossain_Shifat_CV.pdf"
             onClick={() => setIsMenuOpen(false)}
             className="flex items-center justify-center gap-2 mt-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-[#00DF82] text-[#08090D] shadow-lg text-center"
           >

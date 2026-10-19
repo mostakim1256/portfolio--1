@@ -80,7 +80,7 @@ export default function AboutMe() {
             <div className="pt-3 flex flex-wrap gap-4 items-center">
               <a
                 href={cv}
-                download
+                download="Mostakim_Hossain_Shifat_CV.pdf"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_20px_rgba(0,223,130,0.35)] hover:shadow-[0_0_25px_rgba(0,223,130,0.55)] hover:scale-105 transition-all duration-300"
               >
                 <span>Download CV</span>

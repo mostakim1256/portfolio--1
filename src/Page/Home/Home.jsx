@@ -195,7 +195,7 @@ const Home = () => {
 
                 <a
                   href={cv}
-                  download
+                  download="Mostakim_Hossain_Shifat_CV.pdf"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/[0.04] border border-white/[0.12] rounded-full font-bold text-sm text-gray-200 hover:text-[#00DF82] hover:border-[#00DF82]/60 hover:bg-white/[0.08] transition-all duration-300"
                 >
                   <Download size={16} />
