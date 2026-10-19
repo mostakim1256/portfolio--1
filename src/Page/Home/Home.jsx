@@ -6,9 +6,23 @@ import { loadFull } from "tsparticles";
 import Heronice from "./Homecomponents/Heronice";
 import AboutMe from "./Homecomponents/Aboutme";
 import ProjectsSection from "./Homecomponents/ProjectsSection";
+import TestimonialsSection from "./Homecomponents/TestimonialsSection";
+import BlogSection from "./Homecomponents/BlogSection";
 import ContactSection from "./Homecomponents/ContactSection";
 
-import { Linkedin, Github, Twitter, Instagram, Code2, Globe, Users, Star, ArrowRight, Download, GraduationCap } from "lucide-react";
+import {
+  Linkedin,
+  Github,
+  Facebook,
+  Instagram,
+  Code2,
+  Briefcase,
+  Users,
+  Star,
+  ArrowRight,
+  Download,
+  CheckCircle2,
+} from "lucide-react";
 
 import cv from "../../assets/Image/shifat cv.pdf";
 import bg from "../../assets/Image/63d67696-5794-4197-a2ce-73042459eca0-removebg-preview (1).png";
@@ -30,14 +44,14 @@ const Home = () => {
   useEffect(() => {
     const typed = new Typed(typedRef.current, {
       strings: [
-        "Frontend & MERN Developer",
+        "Frontend Developer",
+        "React & Next.js Specialist",
         "Wix & Squarespace Expert",
-        "45+ Client Projects Done",
-        "Modern UI/UX Implementer",
+        "MERN Stack Developer",
       ],
       typeSpeed: 60,
       backSpeed: 40,
-      backDelay: 1500,
+      backDelay: 1600,
       loop: true,
       showCursor: true,
       cursorChar: "|",
@@ -46,6 +60,7 @@ const Home = () => {
     return () => typed.destroy();
   }, []);
 
+  // Green particles theme
   const particlesOptions = useMemo(
     () => ({
       fullScreen: { enable: true, zIndex: 0 },
@@ -64,10 +79,10 @@ const Home = () => {
         },
         modes: {
           grab: {
-            distance: 200,
+            distance: 180,
             links: {
-              opacity: 0.6,
-              color: "#FF014F",
+              opacity: 0.5,
+              color: "#00DF82",
             },
           },
           push: {
@@ -77,18 +92,18 @@ const Home = () => {
       },
       particles: {
         color: {
-          value: ["#FF014F", "#00f2fe", "#a855f7", "#ffffff"],
+          value: ["#00DF82", "#10B981", "#34D399", "#ffffff"],
         },
         links: {
-          color: "#ffffff",
+          color: "#00DF82",
           distance: 140,
           enable: true,
-          opacity: 0.16,
+          opacity: 0.1,
           width: 1,
         },
         move: {
           enable: true,
-          speed: 1,
+          speed: 0.8,
           direction: "none",
           random: true,
           straight: false,
@@ -99,12 +114,12 @@ const Home = () => {
         number: {
           density: {
             enable: true,
-            area: 800,
+            area: 850,
           },
-          value: 50,
+          value: 45,
         },
         opacity: {
-          value: { min: 0.25, max: 0.75 },
+          value: { min: 0.2, max: 0.6 },
         },
         size: {
           value: { min: 1.5, max: 3.5 },
@@ -118,14 +133,14 @@ const Home = () => {
   const socialLinks = [
     { icon: Github, href: "https://github.com/mostakim1256", label: "GitHub" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
     { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
   ];
 
   return (
-    <div className="relative bg-[#0e1118] text-white selection:bg-[#FF014F] selection:text-white overflow-hidden">
+    <div className="relative bg-[#08090D] text-white selection:bg-[#00DF82] selection:text-[#08090D] overflow-hidden">
 
-      {/* High-End Interactive Particle Background */}
+      {/* Reactive Particle Background in Emerald Green */}
       {particlesInit && (
         <Particles
           id="tsparticles"
@@ -133,45 +148,63 @@ const Home = () => {
         />
       )}
 
-      {/* HERO SECTION */}
-      <section id="home" className="relative z-10 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      {/* ===================== HERO SECTION ===================== */}
+      <section id="home" className="relative z-10 min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         
-        {/* Ambient Top Glow */}
-        <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-[#FF014F]/10 blur-[160px] pointer-events-none rounded-full" />
+        {/* Soft Ambient Green Glow behind hero */}
+        <div className="absolute top-20 right-1/4 w-[550px] h-[550px] bg-[#00DF82]/10 blur-[180px] pointer-events-none rounded-full" />
+        <div className="absolute top-1/3 left-10 w-[400px] h-[400px] bg-emerald-600/5 blur-[160px] pointer-events-none rounded-full" />
 
         <div className="w-full max-w-7xl mx-auto">
+          
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
             {/* Left Content Column */}
             <div className="lg:col-span-7 text-center lg:text-left space-y-6">
 
-              {/* Status Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs font-semibold tracking-wider text-gray-300 uppercase">
-                  Available for New Projects
-                </span>
-              </div>
+              <p className="text-gray-400 text-base sm:text-lg font-medium tracking-wide">
+                Hi, I'm
+              </p>
 
-              {/* Title & Introduction */}
               <div>
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
-                  Hi, I'm <span className="text-white">Sifat</span>
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-white">
+                  Mostakim Hossain <span className="text-[#00DF82]">Shifat</span>
                 </h1>
+                
                 <div className="flex items-center justify-center lg:justify-start gap-2 mt-2">
                   <h2
                     ref={typedRef}
-                    className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FF014F] min-h-[55px] flex items-center"
+                    className="text-2xl sm:text-4xl font-bold text-gray-200 min-h-[48px] flex items-center"
                   />
                 </div>
               </div>
 
-              <p className="text-gray-300 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg leading-relaxed">
-                Specialized in <span className="text-white font-semibold">Wix & Squarespace development</span> alongside <span className="text-white font-semibold">React & MERN Frontend</span>. With 1+ year of hands-on experience and 45+ successfully delivered projects, I build modern, high-converting web solutions.
+              <p className="text-gray-400 max-w-xl mx-auto lg:mx-0 text-sm sm:text-base leading-relaxed">
+                I build modern, responsive and user-friendly web applications using React, Next.js, Tailwind CSS and JavaScript. I'm passionate about turning ideas into real digital experiences.
               </p>
 
-              {/* Social Icons */}
-              <div className="flex justify-center lg:justify-start gap-3 pt-2">
+              {/* Call to Actions matching reference */}
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
+                <a
+                  href="#projects"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#00DF82] hover:bg-[#00c975] rounded-full font-bold text-sm text-[#08090D] shadow-[0_0_25px_rgba(0,223,130,0.4)] hover:shadow-[0_0_35px_rgba(0,223,130,0.6)] hover:scale-105 transition-all duration-300"
+                >
+                  <span>View My Projects</span>
+                  <ArrowRight size={16} />
+                </a>
+
+                <a
+                  href={cv}
+                  download
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/[0.04] border border-white/[0.12] rounded-full font-bold text-sm text-gray-200 hover:text-[#00DF82] hover:border-[#00DF82]/60 hover:bg-white/[0.08] transition-all duration-300"
+                >
+                  <Download size={16} />
+                  <span>Download CV</span>
+                </a>
+              </div>
+
+              {/* Social Icons row in circular dark cards */}
+              <div className="flex justify-center lg:justify-start gap-3 pt-3">
                 {socialLinks.map((item, i) => {
                   const Icon = item.icon;
                   return (
@@ -180,135 +213,136 @@ const Home = () => {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F]/15 text-gray-300 hover:text-[#FF014F] hover:shadow-[0_0_15px_rgba(255,1,79,0.35)] flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+                      className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-[#00DF82] hover:bg-[#00DF82]/15 text-gray-300 hover:text-[#00DF82] hover:shadow-[0_0_15px_rgba(0,223,130,0.35)] flex items-center justify-center transition-all duration-300 hover:scale-110"
                       aria-label={item.label}
                     >
-                      <Icon size={18} />
+                      <Icon size={17} />
                     </a>
                   );
                 })}
               </div>
 
-              {/* Call to Actions */}
-              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-3">
+            </div>
+
+            {/* Right Center Image Column matching the reference! */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+
+              {/* Floating Top-Right "Available for Freelance Projects" Badge */}
+              <div className="self-end mb-4 mr-0 sm:mr-4 z-20">
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#FF014F] to-[#e00045] rounded-xl font-bold text-sm text-white shadow-[0_4px_25px_rgba(255,1,79,0.4)] hover:shadow-[0_4px_35px_rgba(255,1,79,0.6)] hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-[#111420]/90 border border-white/[0.08] hover:border-[#00DF82]/50 backdrop-blur-xl shadow-xl transition-all duration-300 hover:scale-102 group"
                 >
-                  <span>Hire Me</span>
-                  <ArrowRight size={16} />
-                </a>
-
-                <a
-                  href={cv}
-                  download
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/[0.04] border border-white/[0.1] rounded-xl font-bold text-sm text-gray-200 hover:text-white hover:bg-white/[0.08] hover:border-[#FF014F]/50 transition-all duration-300"
-                >
-                  <Download size={16} />
-                  <span>Download CV</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Right Image Column with Live Animated BG Effects */}
-            <div className="lg:col-span-5 flex justify-center relative group w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
-
-              {/* Live Animated Glowing Radial Orbits */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                <div className="absolute w-[90%] h-[90%] rounded-full border border-dashed border-[#FF014F]/30 animate-[spin_50s_linear_infinite]" />
-                <div className="absolute w-[80%] h-[80%] rounded-full border-2 border-[#FF014F]/20 bg-gradient-to-tr from-[#FF014F]/10 via-transparent to-[#9333ea]/10 blur-md animate-[pulse_6s_ease-in-out_infinite]" />
-                <div className="absolute w-[70%] h-[70%] rounded-full bg-gradient-to-tr from-[#FF014F]/20 via-transparent to-[#FF014F]/5 blur-2xl animate-[spin_20s_linear_infinite]" />
-                <div className="absolute w-[75%] h-[75%] rounded-full border-b-2 border-r-2 border-[#FF014F]/40 animate-[spin_12s_linear_infinite]" />
-              </div>
-
-              {/* Main Profile Image */}
-              <img
-                src={bg}
-                alt="Sifat - Frontend Developer"
-                className="w-full object-contain drop-shadow-[0_20px_50px_rgba(255,1,79,0.25)] relative z-10 transition-transform duration-500 group-hover:scale-105"
-                style={{
-                  maskImage: "linear-gradient(to bottom, black 65%, transparent 98%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 98%)",
-                }}
-              />
-
-              {/* Bottom Blending Overlay */}
-              <div className="absolute -bottom-2 left-0 w-full h-36 bg-gradient-to-t from-[#0e1118] via-[#0e1118]/80 to-transparent z-20 pointer-events-none" />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* STATS SECTION */}
-      <section className="relative z-10 pb-16 pt-2 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-
-          {/* Frosted Glass Container */}
-          <div className="relative rounded-3xl p-6 sm:p-8 backdrop-blur-xl bg-[#131620]/80 border border-white/[0.08] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] hover:border-[#FF014F]/40 transition-all duration-500">
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 relative z-10">
-              {[
-                {
-                  icon: Code2,
-                  num: "45+",
-                  label: "Projects Completed",
-                },
-                {
-                  icon: Globe,
-                  num: "1+ Year",
-                  label: "Practical Experience",
-                },
-                {
-                  icon: Star,
-                  num: "100%",
-                  label: "Client Satisfaction",
-                },
-                {
-                  icon: GraduationCap,
-                  num: "Diploma Engr.",
-                  label: "Kurigram Polytechnic",
-                },
-              ].map((item, index) => {
-                const IconComponent = item.icon;
-                return (
-                  <div
-                    key={index}
-                    className={`flex items-center gap-4 sm:gap-5 justify-start lg:justify-center ${
-                      index !== 3 ? "lg:border-r lg:border-white/[0.08]" : ""
-                    } pr-0 lg:pr-4`}
-                  >
-                    <div className="relative flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center bg-[#FF014F]/10 border border-[#FF014F]/30 shadow-[0_0_20px_rgba(255,1,79,0.25)] group-hover:scale-105 transition-transform duration-300">
-                      <IconComponent className="w-6 h-6 text-[#FF014F]" />
-                    </div>
-
-                    <div className="text-left">
-                      <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-none">
-                        {item.num}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-400 font-medium mt-1">
-                        {item.label}
-                      </p>
-                    </div>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#00DF82] animate-pulse" />
+                  <div className="text-left">
+                    <p className="text-[11px] font-bold text-white">Available for Freelance Projects</p>
+                    <p className="text-[10px] text-gray-400 group-hover:text-[#00DF82] transition-colors flex items-center gap-1">
+                      <span>Open to new opportunities</span>
+                      <ArrowRight size={10} />
+                    </p>
                   </div>
-                );
-              })}
+                </a>
+              </div>
+
+              {/* Main Photo with Vibrant Neon Green Circular Ring */}
+              <div className="relative w-72 sm:w-80 lg:w-96 flex items-center justify-center">
+
+                {/* Glowing Circular Ring behind him! */}
+                <div className="absolute w-64 h-64 sm:w-76 sm:h-76 lg:w-88 lg:h-88 rounded-full border-4 border-[#00DF82] shadow-[0_0_50px_rgba(0,223,130,0.5),inset_0_0_30px_rgba(0,223,130,0.3)] animate-pulse" />
+                <div className="absolute w-60 h-60 sm:w-72 sm:h-72 lg:w-84 lg:h-84 rounded-full bg-gradient-to-tr from-[#00DF82]/20 via-emerald-600/10 to-transparent blur-xl pointer-events-none" />
+
+                {/* Main Profile Image */}
+                <img
+                  src={bg}
+                  alt="Mostakim Hossain Shifat"
+                  className="w-full object-contain relative z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:scale-102"
+                />
+
+                {/* Decorative Script "Code Create Inspire" on the right */}
+                <div className="absolute -right-4 sm:-right-8 top-1/2 -translate-y-1/2 rotate-12 z-20 pointer-events-none hidden sm:block">
+                  <div className="font-handwriting text-2xl lg:text-3xl font-bold text-white/90 drop-shadow-[0_2px_10px_rgba(0,223,130,0.5)] tracking-wider leading-snug">
+                    <p>Code</p>
+                    <p className="text-[#00DF82]">Create</p>
+                    <p>Inspire</p>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
 
           </div>
+
+          {/* ===================== HORIZONTAL STATS BAR ===================== */}
+          <div className="mt-16 w-full max-w-6xl mx-auto rounded-2xl bg-[#0F121A] border border-white/[0.08] p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.6)]">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-center">
+              
+              {/* Stat 1 */}
+              <div className="flex items-center gap-4 justify-start sm:justify-center">
+                <div className="w-12 h-12 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] flex-shrink-0 shadow-[0_0_15px_rgba(0,223,130,0.2)]">
+                  <Code2 size={22} />
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white">5+</h3>
+                  <p className="text-xs text-gray-400 font-medium">Years Learning & Practicing</p>
+                </div>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="flex items-center gap-4 justify-start sm:justify-center lg:border-l lg:border-white/[0.08]">
+                <div className="w-12 h-12 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] flex-shrink-0 shadow-[0_0_15px_rgba(0,223,130,0.2)]">
+                  <Briefcase size={22} />
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white">45+</h3>
+                  <p className="text-xs text-gray-400 font-medium">Projects Completed</p>
+                </div>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="flex items-center gap-4 justify-start sm:justify-center lg:border-l lg:border-white/[0.08]">
+                <div className="w-12 h-12 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] flex-shrink-0 shadow-[0_0_15px_rgba(0,223,130,0.2)]">
+                  <Users size={22} />
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white">45+</h3>
+                  <p className="text-xs text-gray-400 font-medium">Happy Clients</p>
+                </div>
+              </div>
+
+              {/* Stat 4 */}
+              <div className="flex items-center gap-4 justify-start sm:justify-center lg:border-l lg:border-white/[0.08]">
+                <div className="w-12 h-12 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] flex-shrink-0 shadow-[0_0_15px_rgba(0,223,130,0.2)]">
+                  <Star size={22} />
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white">100%</h3>
+                  <p className="text-xs text-gray-400 font-medium">Dedication & Passion</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* ABOUT ME SECTION */}
+      {/* ===================== ABOUT ME + SKILLS SECTION ===================== */}
       <AboutMe />
 
-      {/* SERVICES / WHAT I DO SECTION */}
+      {/* ===================== SERVICES SECTION ===================== */}
       <Heronice />
 
-      {/* FEATURED PROJECTS SECTION */}
+      {/* ===================== FEATURED PROJECTS ===================== */}
       <ProjectsSection />
 
-      {/* CONTACT SECTION */}
+      {/* ===================== WHAT CLIENTS SAY (TESTIMONIALS) ===================== */}
+      <TestimonialsSection />
+
+      {/* ===================== LATEST BLOG & TIPS ===================== */}
+      <BlogSection />
+
+      {/* ===================== CONTACT / LET'S WORK TOGETHER ===================== */}
       <ContactSection />
 
     </div>

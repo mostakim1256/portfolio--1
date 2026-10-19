@@ -1,6 +1,5 @@
 import React from "react";
-import { ArrowUp, Github, Linkedin, Twitter, Instagram, Heart } from "lucide-react";
-import logo from "../../assets/Image/fb6c7776-e933-437f-85d7-a75ddd2d7e7f.jpg";
+import { ArrowUp, Github, Linkedin, Facebook, Instagram } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -10,65 +9,56 @@ const Footer = () => {
   const navLinks = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
     { label: "Projects", href: "#projects" },
+    { label: "Services", href: "#services" },
+    { label: "Skills", href: "#skills" },
+    { label: "Blog", href: "#blog" },
     { label: "Contact", href: "#contact" },
   ];
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/mostakim1256", label: "GitHub" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
     { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
   ];
 
   return (
-    <footer className="relative bg-[#090b10] border-t border-white/[0.08] text-white pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-[#06070A] border-t border-white/[0.06] text-white py-10 overflow-hidden">
       
-      {/* Background ambient lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-24 bg-[#FF014F]/10 blur-[100px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 pb-12 border-b border-white/[0.06] items-center">
+        {/* Top Row matching reference image */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/[0.06]">
           
-          {/* Brand Info */}
-          <div className="md:col-span-5 space-y-4">
-            <a href="#home" className="flex items-center gap-3 group inline-block">
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#FF014F]/80 p-0.5">
-                <img src={logo} alt="Shifat" className="w-full h-full object-cover rounded-full" />
-              </div>
-              <span className="text-2xl font-bold tracking-wider text-white">
-                SHIFAT<span className="text-[#FF014F]">.</span>
-              </span>
-            </a>
-            <p className="text-gray-400 text-sm max-w-sm leading-relaxed">
-              Passionate Frontend Developer focused on creating beautiful, accessible, and high-performance digital experiences.
-            </p>
+          {/* Logo & Identity */}
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full border border-[#00DF82]/80 flex items-center justify-center bg-[#00DF82]/10 shadow-[0_0_10px_rgba(0,223,130,0.3)]">
+              <span className="text-xs font-bold text-[#00DF82]">S</span>
+            </div>
+            <div>
+              <span className="text-sm font-bold tracking-wider text-white">SHIFAT</span>
+              <p className="text-[10px] text-gray-400">Frontend Developer</p>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="md:col-span-4">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
-              Quick Navigation
-            </h4>
-            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-400">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="hover:text-[#FF014F] transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Navigation Links in Center */}
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-gray-400">
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className="hover:text-[#00DF82] transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-          {/* Socials & Back to Top */}
-          <div className="md:col-span-3 flex flex-col md:items-end gap-4">
-            <div className="flex gap-2">
+          {/* Right Socials & Back-to-Top Button */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               {socialLinks.map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -77,34 +67,31 @@ const Footer = () => {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F]/15 text-gray-300 hover:text-[#FF014F] hover:shadow-[0_0_15px_rgba(255,1,79,0.3)] flex items-center justify-center transition-all duration-300 hover:scale-110"
+                    className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-[#00DF82] hover:bg-[#00DF82]/15 text-gray-400 hover:text-[#00DF82] flex items-center justify-center transition-all duration-300"
                     aria-label={item.label}
                   >
-                    <Icon size={16} />
+                    <Icon size={14} />
                   </a>
                 );
               })}
             </div>
 
+            {/* Back to top circle button in Green matching reference */}
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-[#FF014F] transition-colors group mt-2"
+              className="w-8 h-8 rounded-full bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] flex items-center justify-center shadow-[0_0_15px_rgba(0,223,130,0.4)] transition-transform hover:scale-110"
+              aria-label="Back to top"
             >
-              <span>Back to Top</span>
-              <div className="w-7 h-7 rounded-full bg-white/[0.04] border border-white/[0.08] group-hover:border-[#FF014F] group-hover:bg-[#FF014F]/15 text-gray-400 group-hover:text-[#FF014F] flex items-center justify-center transition-all">
-                <ArrowUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />
-              </div>
+              <ArrowUp size={15} />
             </button>
           </div>
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-          <p>© {new Date().getFullYear()} Md Mostakim Hossain Shifat. All rights reserved.</p>
-          <p className="flex items-center gap-1.5">
-            Designed & Built with <Heart size={13} className="text-[#FF014F] fill-[#FF014F]" /> using React & Tailwind
-          </p>
+        {/* Bottom Copyright Row */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-2">
+          <p>© {new Date().getFullYear()} Shifat. All rights reserved.</p>
+          <p>Designed & Developed with Passion</p>
         </div>
 
       </div>

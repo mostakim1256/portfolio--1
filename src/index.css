@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@600;700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -11,9 +10,21 @@ html,
 body,
 #root {
   min-height: 100%;
-  background-color: #0e1118;
+  background-color: #08090D;
   color: #f1f5f9;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Green Selection */
+::selection {
+  background-color: #00DF82;
+  color: #08090D;
+}
+
+/* Script Font for "Code Create Inspire" */
+.font-handwriting {
+  font-family: 'Caveat', cursive;
 }
 
 #tsparticles {
@@ -22,5 +33,6 @@ body,
   height: 100%;
   top: 0;
   left: 0;
+  pointer-events: none;
   z-index: 0;
 }

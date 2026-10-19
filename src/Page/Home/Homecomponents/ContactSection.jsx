@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, Sparkles, CheckCircle2, Linkedin, Github, Twitter, Instagram, MessageCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Linkedin,
+  Github,
+  Facebook,
+  Instagram,
+  Rocket,
+  CheckCircle2,
+} from "lucide-react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    subject: "Wix & Squarespace Project",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -14,270 +25,207 @@ export default function ContactSection() {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    // Construct pre-formatted message for WhatsApp
-    const text = 
+    // Send formatted message directly to WhatsApp 01518994147
+    const text =
       `*New Portfolio Inquiry*%0A%0A` +
       `👤 *Name:* ${encodeURIComponent(formData.name)}%0A` +
       `📧 *Email:* ${encodeURIComponent(formData.email)}%0A` +
-      `📌 *Subject:* ${encodeURIComponent(formData.subject || "Project Discussion")}%0A%0A` +
+      `📌 *Subject:* ${encodeURIComponent(formData.subject)}%0A%0A` +
       `💬 *Message:*%0A${encodeURIComponent(formData.message)}`;
 
     const whatsappUrl = `https://wa.me/8801518994147?text=${text}`;
-
-    // Open WhatsApp with pre-filled message
     window.open(whatsappUrl, "_blank");
 
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", subject: "Wix & Squarespace Project", message: "" });
     }, 4000);
   };
-
-  const contactDetails = [
-    {
-      icon: <MessageCircle className="text-[#25D366]" size={22} />,
-      title: "WhatsApp",
-      value: "+880 1518-994147",
-      link: "https://wa.me/8801518994147",
-      badge: "Instant Reply",
-    },
-    {
-      icon: <Mail className="text-[#FF014F]" size={22} />,
-      title: "Email Address",
-      value: "mostakimshifat476@gmail.com",
-      link: "mailto:mostakimshifat476@gmail.com",
-      badge: "Official",
-    },
-    {
-      icon: <Phone className="text-[#38bdf8]" size={22} />,
-      title: "Direct Call",
-      value: "+880 1518-994147",
-      link: "tel:+8801518994147",
-      badge: "Voice",
-    },
-    {
-      icon: <MapPin className="text-[#a855f7]" size={22} />,
-      title: "Location",
-      value: "Dhaka, Bangladesh (Open Worldwide)",
-      link: "#",
-      badge: "Remote",
-    },
-  ];
 
   const socialLinks = [
     { icon: Github, label: "GitHub", href: "https://github.com/mostakim1256" },
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-    { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+    { icon: Facebook, label: "Facebook", href: "https://facebook.com" },
     { icon: Instagram, label: "Instagram", href: "https://instagram.com" },
   ];
 
   return (
-    <section id="contact" className="relative bg-[#0e1118] text-white py-20 lg:py-28 overflow-hidden">
+    <section id="contact" className="relative bg-[#08090D] text-white py-20 lg:py-24 overflow-hidden">
       
-      {/* Background ambient glow */}
-      <div className="absolute -bottom-20 right-0 w-[500px] h-[500px] bg-[#FF014F]/10 blur-[150px] pointer-events-none rounded-full" />
-      <div className="absolute top-10 left-10 w-96 h-96 bg-emerald-500/5 blur-[120px] pointer-events-none rounded-full" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FF014F]/10 border border-[#FF014F]/30 text-[#FF014F] text-sm font-semibold tracking-wide uppercase mb-3">
-            <Sparkles size={14} />
-            <span>Direct Communication</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-            Get In <span className="text-[#FF014F]">Touch</span>
-          </h2>
-          <p className="mt-4 text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
-            Ready to start your next website or have questions? Send a direct message to my WhatsApp or Email and I'll respond swiftly!
+        {/* Header matching reference image */}
+        <div className="mb-12">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#00DF82] mb-1.5">
+            GET IN TOUCH
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-[#FF014F] to-transparent mx-auto mt-4 rounded-full" />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+            Let's Work <span className="text-[#00DF82]">Together</span>
+          </h2>
+          <p className="mt-2 text-gray-400 text-xs sm:text-sm max-w-xl">
+            Have a project in mind or just want to say hi? Feel free to reach out.
+          </p>
         </div>
 
-        {/* Contact Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+        {/* 3 Columns matching reference image: Info Left, Form Center, Promo Card Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Info Column */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="rounded-3xl p-8 bg-[#131620] border border-white/[0.08] shadow-xl space-y-6">
-              <h3 className="text-2xl font-bold text-white">
-                Let's Talk About Your Next <span className="text-[#FF014F]">Project</span>
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                I am actively taking on new freelance projects for <span className="text-white font-medium">Wix, Squarespace, and React Frontend</span>. Connect with me directly on WhatsApp for the quickest response!
-              </p>
-
-              {/* Direct WhatsApp Action Button */}
-              <a
-                href="https://wa.me/8801518994147"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 rounded-2xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-[0_4px_20px_rgba(37,211,102,0.35)] hover:shadow-[0_4px_25px_rgba(37,211,102,0.5)] transition-all duration-300 hover:scale-[1.02]"
-              >
-                <MessageCircle size={18} />
-                <span>Chat Directly on WhatsApp</span>
+          {/* ================= COLUMN 1: LEFT CONTACT INFO ================= */}
+          <div className="lg:col-span-3 space-y-5">
+            
+            <div className="flex items-center gap-3 text-xs text-gray-300">
+              <div className="w-8 h-8 rounded-full bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] flex-shrink-0">
+                <Mail size={14} />
+              </div>
+              <a href="mailto:mostakimshifat476@gmail.com" className="hover:text-[#00DF82] transition truncate">
+                mostakimshifat476@gmail.com
               </a>
+            </div>
 
-              {/* Contact List */}
-              <div className="space-y-3.5 pt-2">
-                {contactDetails.map((item, index) => (
+            <div className="flex items-center gap-3 text-xs text-gray-300">
+              <div className="w-8 h-8 rounded-full bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] flex-shrink-0">
+                <MapPin size={14} />
+              </div>
+              <span>Dhaka, Bangladesh</span>
+            </div>
+
+            <div className="flex items-center gap-3 text-xs text-gray-300">
+              <div className="w-8 h-8 rounded-full bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] flex-shrink-0">
+                <Phone size={14} />
+              </div>
+              <a href="https://wa.me/8801518994147" target="_blank" rel="noopener noreferrer" className="hover:text-[#00DF82] transition">
+                +880 1518-994147
+              </a>
+            </div>
+
+            {/* Social Icons matching reference image */}
+            <div className="pt-4 flex items-center gap-2.5">
+              {socialLinks.map((social, index) => {
+                const Icon = social.icon;
+                return (
                   <a
                     key={index}
-                    href={item.link}
-                    target={item.link.startsWith("http") ? "_blank" : undefined}
-                    rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#FF014F]/40 hover:bg-white/[0.05] transition-all duration-300 group"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-[#00DF82] hover:bg-[#00DF82]/15 text-gray-300 hover:text-[#00DF82] flex items-center justify-center transition-all duration-300"
+                    aria-label={social.label}
                   >
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white/[0.04] border border-white/[0.08] group-hover:border-[#FF014F]/60 group-hover:bg-[#FF014F]/10 group-hover:shadow-[0_0_15px_rgba(255,1,79,0.25)] transition-all">
-                        {item.icon}
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-400 uppercase tracking-wider font-medium">{item.title}</p>
-                        <p className="text-sm font-semibold text-white group-hover:text-[#FF014F] transition-colors">{item.value}</p>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white/[0.05] text-gray-400 border border-white/[0.06]">
-                      {item.badge}
-                    </span>
+                    <Icon size={15} />
                   </a>
-                ))}
-              </div>
-
-              {/* Social Links */}
-              <div className="pt-4 border-t border-white/[0.06]">
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Follow My Profiles</p>
-                <div className="flex gap-3">
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#FF014F] hover:bg-[#FF014F]/15 text-gray-300 hover:text-[#FF014F] hover:shadow-[0_0_15px_rgba(255,1,79,0.35)] flex items-center justify-center transition-all duration-300 hover:scale-110"
-                        aria-label={social.label}
-                      >
-                        <Icon size={18} />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-
+                );
+              })}
             </div>
+
           </div>
 
-          {/* Right Form Column */}
-          <div className="lg:col-span-7">
-            <div className="rounded-3xl p-8 sm:p-10 bg-[#131620] border border-white/[0.08] shadow-2xl relative">
+          {/* ================= COLUMN 2: CENTER FORM ================= */}
+          <div className="lg:col-span-6">
+            <div className="rounded-2xl p-6 sm:p-7 bg-[#0F121A] border border-white/[0.08]">
               
-              {/* Form Title & Badge */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
-                <div>
-                  <h4 className="text-xl font-bold text-white">Send Instant Inquiry</h4>
-                  <p className="text-xs text-gray-400 mt-1">Fills and sends directly to Shifat's WhatsApp</p>
-                </div>
-                <span className="flex items-center gap-1.5 text-xs text-[#25D366] font-semibold bg-[#25D366]/10 px-3 py-1.5 rounded-full border border-[#25D366]/20">
-                  <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
-                  <span>WhatsApp Enabled</span>
-                </span>
-              </div>
-
-              {/* Success Notification Alert */}
               {submitted && (
-                <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex items-center gap-3 animate-fadeIn">
-                  <CheckCircle2 size={20} className="flex-shrink-0" />
-                  <p className="text-sm font-medium">WhatsApp message launched! Shifat will connect with you right away.</p>
+                <div className="mb-4 p-3 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/40 text-[#00DF82] flex items-center gap-2 text-xs">
+                  <CheckCircle2 size={16} />
+                  <span>Message sent to WhatsApp! Shifat will respond shortly.</span>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Name Input */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Your Name */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+                    <label className="block text-[11px] font-semibold text-gray-400 mb-1.5">
                       Your Name *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. John Doe"
+                      placeholder="Enter your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#FF014F] focus:ring-1 focus:ring-[#FF014F] outline-none transition text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-xs transition"
                     />
                   </div>
 
-                  {/* Email Input */}
+                  {/* Your Email */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+                    <label className="block text-[11px] font-semibold text-gray-400 mb-1.5">
                       Your Email *
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="e.g. john@example.com"
+                      placeholder="Enter your email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#FF014F] focus:ring-1 focus:ring-[#FF014F] outline-none transition text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-xs transition"
                     />
                   </div>
                 </div>
 
-                {/* Subject Input */}
+                {/* Subject Select */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
-                    Project / Inquiry Subject
+                  <label className="block text-[11px] font-semibold text-gray-400 mb-1.5">
+                    Subject
                   </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Wix Website Redesign / React Frontend Project"
+                  <select
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#FF014F] focus:ring-1 focus:ring-[#FF014F] outline-none transition text-sm"
-                  />
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#111420] border border-white/[0.08] text-white focus:border-[#00DF82] outline-none text-xs transition"
+                  >
+                    <option value="Wix Website Design">Wix Website Design & Development</option>
+                    <option value="Squarespace Customization">Squarespace Customization</option>
+                    <option value="Frontend & React App">Frontend & React Web Application</option>
+                    <option value="General Freelance Inquiry">General Freelance Inquiry</option>
+                  </select>
                 </div>
 
-                {/* Message Input */}
+                {/* Message */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
-                    Your Message *
+                  <label className="block text-[11px] font-semibold text-gray-400 mb-1.5">
+                    Message *
                   </label>
                   <textarea
-                    rows={5}
+                    rows={4}
                     required
-                    placeholder="Tell me about your project, timeline, and requirements..."
+                    placeholder="Your message..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#FF014F] focus:ring-1 focus:ring-[#FF014F] outline-none transition resize-none text-sm"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-xs transition resize-none"
                   />
                 </div>
 
-                {/* Submit Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 items-center">
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-[#25D366] to-[#1eb855] text-white shadow-[0_4px_25px_rgba(37,211,102,0.4)] hover:shadow-[0_4px_35px_rgba(37,211,102,0.6)] hover:scale-[1.02] active:scale-[0.99] transition-all duration-300"
-                  >
-                    <MessageCircle size={18} />
-                    <span>Send to WhatsApp (01518994147)</span>
-                  </button>
-
-                  <a
-                    href="mailto:mostakimshifat476@gmail.com"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-sm bg-white/[0.04] border border-white/[0.08] text-gray-300 hover:text-white hover:bg-white/[0.08] hover:border-[#FF014F]/40 transition-all text-center"
-                  >
-                    <Mail size={16} />
-                    <span>Send via Email Instead</span>
-                  </a>
-                </div>
+                {/* Submit Button matching reference */}
+                <button
+                  type="submit"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_20px_rgba(0,223,130,0.35)] hover:shadow-[0_0_25px_rgba(0,223,130,0.55)] transition-all duration-300"
+                >
+                  <span>Send Message</span>
+                  <Send size={14} />
+                </button>
 
               </form>
+
+            </div>
+          </div>
+
+          {/* ================= COLUMN 3: RIGHT PROMO CARD ================= */}
+          <div className="lg:col-span-3">
+            <div className="rounded-2xl p-6 sm:p-7 bg-[#0F121A] border border-white/[0.08] text-center space-y-4 flex flex-col items-center justify-center min-h-[300px]">
+              
+              <div className="w-14 h-14 rounded-2xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] shadow-[0_0_20px_rgba(0,223,130,0.25)]">
+                <Rocket size={26} />
+              </div>
+
+              <h4 className="text-base font-extrabold text-white">
+                Let's Build Something Great
+              </h4>
+
+              <p className="text-gray-400 text-xs leading-relaxed max-w-[200px]">
+                Your ideas + My skills = <span className="text-[#00DF82] font-semibold">Amazing results</span>.
+              </p>
 
             </div>
           </div>
