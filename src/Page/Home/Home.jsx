@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import Typed from "typed.js";
+import { motion } from "framer-motion";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 
@@ -44,10 +45,11 @@ const Home = () => {
   useEffect(() => {
     const typed = new Typed(typedRef.current, {
       strings: [
-        "Frontend Developer",
-        "React & Next.js Specialist",
-        "Wix & Squarespace Expert",
-        "MERN Stack Developer",
+        "Wix Studio & Editor Expert",
+        "Squarespace 7.1 Specialist",
+        "Frontend Web Developer",
+        "HTML, CSS & Tailwind Pro",
+        "React & Next.js Designer",
       ],
       typeSpeed: 60,
       backSpeed: 40,
@@ -160,7 +162,12 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
             {/* Left Content Column */}
-            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:col-span-7 text-center lg:text-left space-y-6"
+            >
 
               <p className="text-gray-400 text-base sm:text-lg font-medium tracking-wide">
                 Hi, I'm
@@ -180,7 +187,7 @@ const Home = () => {
               </div>
 
               <p className="text-gray-400 max-w-xl mx-auto lg:mx-0 text-sm sm:text-base leading-relaxed">
-                I build modern, responsive and user-friendly web applications using React, Next.js, Tailwind CSS and JavaScript. I'm passionate about turning ideas into real digital experiences.
+                I build modern, responsive, and high-converting websites using <span className="text-white font-semibold">Wix Studio</span>, <span className="text-white font-semibold">Squarespace 7.1</span>, <span className="text-white font-semibold">HTML5/CSS3</span>, <span className="text-white font-semibold">Tailwind CSS</span>, and <span className="text-white font-semibold">JavaScript</span>, alongside reactive interfaces with <span className="text-white font-semibold">React & Next.js</span>. Delivering 45+ pixel-perfect client websites.
               </p>
 
               {/* Call to Actions matching reference */}
@@ -222,13 +229,17 @@ const Home = () => {
                 })}
               </div>
 
-            </div>
+            </motion.div>
 
             {/* Right Center Image Column matching the reference! */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
 
               {/* Floating Top-Right "Available for Freelance Projects" Badge */}
-              <div className="self-end mb-4 mr-0 sm:mr-4 z-20">
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                className="self-end mb-4 mr-0 sm:mr-4 z-20"
+              >
                 <a
                   href="#contact"
                   className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-[#111420]/90 border border-white/[0.08] hover:border-[#00DF82]/50 backdrop-blur-xl shadow-xl transition-all duration-300 hover:scale-102 group"
@@ -242,7 +253,7 @@ const Home = () => {
                     </p>
                   </div>
                 </a>
-              </div>
+              </motion.div>
 
               {/* Main Photo with Vibrant Neon Green Circular Ring */}
               <div className="relative w-72 sm:w-80 lg:w-96 flex items-center justify-center">
@@ -282,7 +293,13 @@ const Home = () => {
           </div>
 
           {/* ===================== HORIZONTAL STATS BAR ===================== */}
-          <div className="mt-16 w-full max-w-6xl mx-auto rounded-2xl bg-[#0F121A] border border-white/[0.08] p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.6)]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-16 w-full max-w-6xl mx-auto rounded-2xl bg-[#0F121A] border border-white/[0.08] p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+          >
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-center">
               
               {/* Stat 1 */}
@@ -330,7 +347,7 @@ const Home = () => {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
