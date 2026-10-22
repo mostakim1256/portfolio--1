@@ -224,11 +224,11 @@ export default function AboutMe() {
             
             {/* Story Card: Slides in from the LEFT */}
             <motion.div
-              initial={{ opacity: 0, x: -140 }}
+              initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.15 }}
               transition={{ type: "spring", stiffness: 55, damping: 16 }}
-              className="rounded-3xl p-7 sm:p-9 bg-gradient-to-br from-[#0F131D]/90 to-[#0A0D15]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-5 hover:border-[#00DF82]/40 transition-all duration-300"
+              className="rounded-3xl p-5 sm:p-9 bg-gradient-to-br from-[#0F131D]/90 to-[#0A0D15]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-4 sm:space-y-5 hover:border-[#00DF82]/40 transition-all duration-300"
             >
               
               <div className="flex items-center gap-3">
@@ -236,12 +236,12 @@ export default function AboutMe() {
                   <Sparkles size={20} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">Mostakim Hossain Shifat</h3>
-                  <p className="text-xs text-[#00DF82] font-semibold">CMS Specialist & Frontend Web Developer</p>
+                  <h3 className="text-base sm:text-lg font-bold text-white">Mostakim Hossain Shifat</h3>
+                  <p className="text-[11px] sm:text-xs text-[#00DF82] font-semibold">CMS Specialist & Frontend Web Developer</p>
                 </div>
               </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed">
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
                 I hold a <strong className="text-white">Diploma in Engineering</strong> from <strong className="text-[#00DF82]">Kurigram Polytechnic Institute</strong>. With over 1 year of hands-on professional freelancing, I have delivered <strong className="text-white">45+ live client websites</strong> across the US, UK, and worldwide.
               </p>
 
@@ -250,7 +250,7 @@ export default function AboutMe() {
               </p>
 
               {/* Verified Checklist */}
-              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
                 {[
                   "100% Client-Side Dedicated",
                   "45+ Delivered Websites",
@@ -269,13 +269,13 @@ export default function AboutMe() {
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 flex flex-wrap items-center gap-4 border-t border-white/[0.08]">
+              <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 border-t border-white/[0.08]">
                 <motion.a
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                   href={cv}
                   download="Mostakim_Hossain_Shifat_CV.pdf"
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_25px_rgba(0,223,130,0.4)] transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_25px_rgba(0,223,130,0.4)] transition-all duration-300"
                 >
                   <span>Download CV</span>
                   <Download size={14} />
@@ -285,7 +285,7 @@ export default function AboutMe() {
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                   href="#contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs bg-white/[0.04] border border-white/[0.12] text-gray-200 hover:text-[#00DF82] hover:border-[#00DF82]/60 transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-xs bg-white/[0.04] border border-white/[0.12] text-gray-200 hover:text-[#00DF82] hover:border-[#00DF82]/60 transition-all duration-300"
                 >
                   <span>Let's Discuss a Project</span>
                   <ArrowRight size={14} />

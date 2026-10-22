@@ -147,7 +147,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-5"
           >
-            <div className="rounded-2xl p-6 sm:p-8 bg-[#0F121A] border border-white/[0.08] shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            <div className="rounded-2xl p-5 sm:p-8 bg-[#0F121A] border border-white/[0.08] shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
               
               <form
                 action="https://formsubmit.co/mostakimshifat32@gmail.com"
@@ -180,7 +180,7 @@ export default function ContactSection() {
                     placeholder="Enter your name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-xs transition"
+                    className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-base sm:text-xs transition"
                   />
                 </div>
 
@@ -196,7 +196,7 @@ export default function ContactSection() {
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-xs transition"
+                    className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-base sm:text-xs transition"
                   />
                 </div>
 
@@ -209,7 +209,7 @@ export default function ContactSection() {
                     name="Project Type"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0F121A] border border-white/[0.08] text-white focus:border-[#00DF82] outline-none text-xs transition cursor-pointer"
+                    className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-[#0F121A] border border-white/[0.08] text-white focus:border-[#00DF82] outline-none text-base sm:text-xs transition cursor-pointer"
                   >
                     <option value="Wix Studio / Editor Project">Wix Studio / Editor Project</option>
                     <option value="Squarespace 7.1 Web Design">Squarespace 7.1 Web Design</option>
@@ -231,7 +231,7 @@ export default function ContactSection() {
                     placeholder="Tell me about your project requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-xs transition resize-none"
+                    className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-500 focus:border-[#00DF82] outline-none text-base sm:text-xs transition resize-none"
                   />
                 </div>
 

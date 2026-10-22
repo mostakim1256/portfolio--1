@@ -98,19 +98,19 @@ const Footer = () => {
             {/* Back to top circle button in Green matching reference */}
             <button
               onClick={scrollToTop}
-              className="w-8 h-8 rounded-full bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] flex items-center justify-center shadow-[0_0_15px_rgba(0,223,130,0.4)] transition-transform hover:scale-110"
+              className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] flex items-center justify-center shadow-[0_0_15px_rgba(0,223,130,0.4)] transition-all hover:scale-110 active:scale-95"
               aria-label="Back to top"
             >
-              <ArrowUp size={15} />
+              <ArrowUp size={16} />
             </button>
           </div>
 
         </div>
 
         {/* Bottom Copyright Row */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-2">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-2 text-center sm:text-left">
           <p>© {new Date().getFullYear()} Mostakim Hossain Shifat. All rights reserved.</p>
-          <p>Designed & Developed with Passion</p>
+          <p className="text-gray-400">Designed & Developed with Precision</p>
         </div>
 
       </div>

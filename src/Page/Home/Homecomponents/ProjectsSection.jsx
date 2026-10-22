@@ -181,7 +181,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-10">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-8 sm:mb-10">
           {categories.map((cat) => {
             const count =
               cat.id === "all"
@@ -193,7 +193,7 @@ export default function ProjectsSection() {
                 key={cat.id}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveFilter(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
+                className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-1.5 sm:gap-2 ${
                   activeFilter === cat.id
                     ? "bg-[#00DF82] text-[#08090D] font-bold shadow-[0_0_20px_rgba(0,223,130,0.4)]"
                     : "bg-white/[0.03] text-gray-400 hover:text-white hover:bg-white/[0.06] border border-white/[0.08]"
@@ -213,7 +213,7 @@ export default function ProjectsSection() {
         {/* Projects Grid: 4 columns on large screens with Framer Motion layout */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"
         >
           <AnimatePresence>
             {filteredProjects.map((project, index) => (
@@ -228,7 +228,7 @@ export default function ProjectsSection() {
                 className="group rounded-2xl bg-[#0F121A] border border-white/[0.08] hover:border-[#00DF82]/60 overflow-hidden transition-all duration-300 hover:shadow-[0_15px_35px_rgba(0,223,130,0.15)] flex flex-col justify-between"
               >
                 {/* Thumbnail Image */}
-                <div className="relative h-44 w-full overflow-hidden bg-black/50">
+                <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-black/50">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -250,7 +250,7 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Content */}
-                <div className="p-5 flex-1 flex flex-col justify-between">
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
                   <div>
                     <h3 className="text-base font-bold text-white group-hover:text-[#00DF82] transition-colors mb-2">
                       {project.title}

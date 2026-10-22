@@ -107,10 +107,10 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Menu Trigger Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/[0.06] border border-white/[0.08] transition"
+            className="lg:hidden p-2.5 rounded-xl text-gray-300 hover:text-white bg-white/[0.04] active:scale-95 border border-white/[0.08] transition-all"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={20} className="text-[#00DF82]" /> : <Menu size={20} />}
@@ -118,13 +118,21 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Drawer Overlay Backdrop */}
+      {isMenuOpen && (
+        <div
+          onClick={() => setIsMenuOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[-1] lg:hidden animate-fade-in"
+        />
+      )}
+
       {/* Mobile Drawer Menu */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+          isMenuOpen ? "max-h-[520px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2 pointer-events-none"
         }`}
       >
-        <div className="px-4 py-5 mx-4 mt-3 rounded-2xl bg-[#0F121A]/95 border border-white/[0.1] backdrop-blur-2xl shadow-2xl flex flex-col gap-2">
+        <div className="px-4 py-4 mx-3 sm:mx-4 mt-2 rounded-2xl bg-[#0F121A]/98 border border-white/[0.12] backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex flex-col gap-1.5">
           {navLinks.map((item) => {
             const isActive = activeSection === item.href.replace("#", "");
 
@@ -133,26 +141,38 @@ const Navbar = () => {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold transition-all ${
                   isActive
-                    ? "bg-[#00DF82] text-[#08090D] font-bold shadow-[0_0_12px_rgba(0,223,130,0.4)]"
-                    : "text-gray-300 hover:bg-white/[0.04] hover:text-[#00DF82]"
+                    ? "bg-[#00DF82] text-[#08090D] font-bold shadow-[0_0_15px_rgba(0,223,130,0.4)]"
+                    : "text-gray-300 hover:bg-white/[0.05] hover:text-[#00DF82]"
                 }`}
               >
-                {item.label}
+                <span>{item.label}</span>
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#08090D]" />}
               </a>
             );
           })}
 
-          <a
-            href={cv}
-            download="Mostakim_Hossain_Shifat_CV.pdf"
-            onClick={() => setIsMenuOpen(false)}
-            className="flex items-center justify-center gap-2 mt-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-[#00DF82] text-[#08090D] shadow-lg text-center"
-          >
-            <span>Download CV</span>
-            <Download size={14} />
-          </a>
+          <div className="pt-2 mt-1 border-t border-white/[0.08] grid grid-cols-2 gap-2">
+            <a
+              href={cv}
+              download="Mostakim_Hossain_Shifat_CV.pdf"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl text-xs font-bold bg-[#00DF82] text-[#08090D] shadow-md hover:bg-[#00c975] transition"
+            >
+              <span>Download CV</span>
+              <Download size={13} />
+            </a>
+
+            <a
+              href="#contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl text-xs font-bold bg-white/[0.06] border border-[#00DF82]/40 text-[#00DF82] hover:bg-[#00DF82]/10 transition"
+            >
+              <span>Hire Me</span>
+              <ArrowUpRight size={13} />
+            </a>
+          </div>
         </div>
       </div>
     </header>
