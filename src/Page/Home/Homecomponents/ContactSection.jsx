@@ -12,6 +12,7 @@ import {
   Rocket,
   CheckCircle2,
   AlertCircle,
+  AlertTriangle,
   Loader2,
   Sparkles,
 } from "lucide-react";
@@ -67,6 +68,15 @@ export default function ContactSection() {
           subject: "Wix & Squarespace Project",
           message: "",
         });
+      } else if (
+        data.message &&
+        (data.message.toLowerCase().includes("activation") ||
+          data.message.toLowerCase().includes("actived"))
+      ) {
+        setStatus("activation");
+        setStatusMessage(
+          "FormSubmit has sent an 'Activate Form' confirmation email to mostakimshifat32@gmail.com! Please check your Gmail and click 'Activate Form'. After that, every submission will work automatically."
+        );
       } else {
         throw new Error(data.message || "Could not send message");
       }
@@ -74,7 +84,8 @@ export default function ContactSection() {
       console.error("Submission failed:", err);
       setStatus("error");
       setStatusMessage(
-        "Could not send automatically due to network. Please send directly to mostakimshifat32@gmail.com or via WhatsApp!"
+        err.message ||
+          "Could not send automatically. Please reach out directly to mostakimshifat32@gmail.com or via WhatsApp!"
       );
     }
   };
@@ -229,6 +240,43 @@ export default function ContactSection() {
                       className="text-[#00DF82] hover:underline font-semibold"
                     >
                       Send another &rarr;
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* First-time Activation Alert */}
+              {status === "activation" && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="mb-5 p-4 rounded-xl bg-amber-500/15 border border-amber-500/50 text-white text-xs space-y-2.5"
+                >
+                  <div className="flex items-center gap-2 font-bold text-sm text-amber-400">
+                    <AlertTriangle size={18} />
+                    <span>Action Required: Activate Your Form (First Time Only)</span>
+                  </div>
+                  <p className="text-gray-200 leading-relaxed">
+                    FormSubmit-এর সিকিউরিটি ভেরিফিকেশনের জন্য <strong className="text-amber-400 font-semibold">mostakimshifat32@gmail.com</strong>-এ একটি অ্যাক্টিভেশন ইমেইল পাঠানো হয়েছে।
+                  </p>
+                  <p className="text-gray-300 leading-relaxed">
+                    আপনার Gmail ওপেন করে FormSubmit-এর পাঠানো মেইলটিতে ঢুকে <span className="text-amber-300 font-bold underline">"Activate Form"</span> বাটনে মাত্র <strong>১ বার</strong> ক্লিক করে দিন। এর পর থেকে প্রতিটা মেসেজ সরাসরি অটোমেটিক চলে আসবে!
+                  </p>
+                  <div className="pt-2 border-t border-amber-500/25 flex items-center justify-between text-[11px]">
+                    <a
+                      href="https://mail.google.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-amber-400 hover:text-amber-300 font-bold underline"
+                    >
+                      Open Gmail to Activate &rarr;
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setStatus("idle")}
+                      className="text-gray-400 hover:text-white"
+                    >
+                      Close
                     </button>
                   </div>
                 </motion.div>
