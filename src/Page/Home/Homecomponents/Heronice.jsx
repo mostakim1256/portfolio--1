@@ -115,7 +115,7 @@ export default function WhatIDo() {
               <div>
                 {/* Header row inside card */}
                 <div className="flex items-center justify-between mb-5">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#00DF82]/10 border border-[#00DF82]/30 group-hover:bg-[#00DF82] group-hover:text-[#08090D] group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,223,130,0.2)]">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#00DF82]/10 border border-[#00DF82]/30 group-hover:bg-[#00DF82]/20 group-hover:border-[#00DF82]/70 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,223,130,0.2)] group-hover:shadow-[0_0_20px_rgba(0,223,130,0.4)]">
                     {item.icon}
                   </div>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/[0.04] text-[#00DF82] border border-[#00DF82]/20">
