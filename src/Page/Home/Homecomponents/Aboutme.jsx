@@ -22,7 +22,7 @@ import cv from "../../../assets/Image/shifat cv.pdf";
 export default function AboutMe() {
   const sectionRef = useRef(null);
 
-  // Mouse move tracking for interactive parallax spotlight
+  // Mouse move tracking for interactive cursor glow
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
@@ -39,21 +39,19 @@ export default function AboutMe() {
     offset: ["start end", "end start"],
   });
 
-  // Smooth springs for buttery scroll transforms
+  // Smooth spring for fluid scroll parallax
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
 
-  // Parallax transforms for background image & typography
+  // Background Parallax Transforms
   const bgImageY = useTransform(smoothProgress, [0, 1], [-70, 70]);
-  const bgImageScale = useTransform(smoothProgress, [0, 1], [0.95, 1.08]);
-  const watermarkY = useTransform(smoothProgress, [0, 1], [60, -60]);
-  const leftColY = useTransform(smoothProgress, [0, 1], [25, -25]);
-  const rightColY = useTransform(smoothProgress, [0, 1], [40, -40]);
+  const bgImageScale = useTransform(smoothProgress, [0, 1], [0.96, 1.08]);
+  const watermarkY = useTransform(smoothProgress, [0, 1], [50, -50]);
 
-  // Skill clusters representing authentic expertise without any backend
+  // Skill clusters representing authentic user expertise
   const skillCategories = [
     {
       title: "CMS Platforms Mastery",
@@ -70,6 +68,7 @@ export default function AboutMe() {
       ],
       icon: Globe,
       color: "#00DF82",
+      enterFrom: "right", // Enters from Right
     },
     {
       title: "Core Frontend & Styling",
@@ -86,6 +85,7 @@ export default function AboutMe() {
       ],
       icon: Code2,
       color: "#00DF82",
+      enterFrom: "left", // Enters from Left
     },
     {
       title: "Frontend Frameworks & UI",
@@ -100,6 +100,7 @@ export default function AboutMe() {
       ],
       icon: Layers,
       color: "#38bdf8",
+      enterFrom: "right", // Enters from Right
     },
     {
       title: "Optimization & Delivery",
@@ -114,6 +115,7 @@ export default function AboutMe() {
       ],
       icon: Zap,
       color: "#a78bfa",
+      enterFrom: "left", // Enters from Left
     },
   ];
 
@@ -124,12 +126,12 @@ export default function AboutMe() {
       onMouseMove={handleMouseMove}
       className="relative bg-[#08090D] text-white py-28 lg:py-36 overflow-hidden select-none"
     >
-      {/* ================= BACKGROUND PARALLAX IMAGE WITH OPACITY ================= */}
+      {/* ================= BACKGROUND LAYER ================= */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         
-        {/* Soft Ambient Neon Glow Behind Image */}
-        <div className="absolute top-1/3 right-10 lg:right-1/4 w-[500px] h-[500px] bg-[#00DF82]/12 rounded-full blur-[170px] pointer-events-none" />
-        <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-emerald-600/5 rounded-full blur-[150px] pointer-events-none" />
+        {/* Soft Ambient Neon Glow Behind Image on the LEFT */}
+        <div className="absolute top-1/4 left-5 lg:left-12 w-[520px] h-[520px] bg-[#00DF82]/12 rounded-full blur-[170px] pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-emerald-600/5 rounded-full blur-[150px] pointer-events-none" />
 
         {/* Huge Scrolling Watermark Typography */}
         <motion.div
@@ -141,28 +143,28 @@ export default function AboutMe() {
           </span>
         </motion.div>
 
-        {/* The Developer's Portrait Image with Scroll Parallax & Opacity */}
+        {/* The Developer's Portrait Image on the LEFT with Scroll Parallax & Opacity */}
         <motion.div
           style={{
             y: bgImageY,
             scale: bgImageScale,
           }}
-          className="absolute right-[-10%] sm:right-[2%] lg:right-[8%] top-[10%] lg:top-[5%] w-[85%] sm:w-[60%] lg:w-[46%] max-w-[620px] pointer-events-none z-0"
+          className="absolute left-[-6%] sm:left-[0%] lg:left-[3%] top-[8%] lg:top-[4%] w-[85%] sm:w-[60%] lg:w-[46%] max-w-[590px] pointer-events-none z-0"
         >
           <img
             src={bg}
             alt="Mostakim Hossain Shifat - Background Parallax"
             style={{
               maskImage:
-                "linear-gradient(to bottom, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 70%, transparent 95%), linear-gradient(to left, rgba(0,0,0,0.85) 50%, transparent 100%)",
+                "linear-gradient(to bottom, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 70%, transparent 95%), linear-gradient(to right, rgba(0,0,0,0.85) 50%, transparent 100%)",
               WebkitMaskImage:
-                "linear-gradient(to bottom, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 70%, transparent 95%), linear-gradient(to left, rgba(0,0,0,0.85) 50%, transparent 100%)",
+                "linear-gradient(to bottom, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 70%, transparent 95%), linear-gradient(to right, rgba(0,0,0,0.85) 50%, transparent 100%)",
             }}
             className="w-full h-auto object-contain opacity-25 lg:opacity-30 filter contrast-110 drop-shadow-[0_0_60px_rgba(0,223,130,0.25)] transition-opacity duration-700"
           />
         </motion.div>
 
-        {/* Dynamic Cursor Spotlight Effect */}
+        {/* Interactive Cursor Spotlight Glow */}
         <div
           className="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-60"
           style={{
@@ -180,10 +182,10 @@ export default function AboutMe() {
         {/* Top Header Badge & Impact Headline */}
         <div className="max-w-3xl mb-16 lg:mb-20">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ type: "spring", stiffness: 60, damping: 16 }}
             className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#00DF82]/10 border border-[#00DF82]/30 text-[#00DF82] text-xs font-bold tracking-widest uppercase mb-4"
           >
             <span className="w-2 h-2 rounded-full bg-[#00DF82] animate-ping" />
@@ -191,10 +193,10 @@ export default function AboutMe() {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.1 }}
             className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]"
           >
             Crafting Pixel-Perfect Websites with{" "}
@@ -204,30 +206,30 @@ export default function AboutMe() {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.15 }}
             className="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed"
           >
             Specialized in converting client ideas into ultra-fast, high-converting digital storefronts and portfolios using Wix Studio, Squarespace 7.1, and modern frontend code.
           </motion.p>
         </div>
 
-        {/* 2-Column Asymmetric Executive Layout */}
+        {/* 2-Column Asymmetric Layout with Alternating Mouse Wheel Slide-In Animations */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
           
-          {/* ================= LEFT COLUMN: DEEP NARRATIVE & STATS ================= */}
-          <motion.div
-            style={{ y: leftColY }}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-8"
-          >
-            {/* Story Card */}
-            <div className="rounded-3xl p-7 sm:p-9 bg-gradient-to-br from-[#0F131D]/90 to-[#0A0D15]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-5 hover:border-[#00DF82]/40 transition-all duration-300">
+          {/* ================= LEFT COLUMN ================= */}
+          <div className="lg:col-span-6 space-y-8">
+            
+            {/* Story Card: Slides in from the LEFT */}
+            <motion.div
+              initial={{ opacity: 0, x: -140 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ type: "spring", stiffness: 55, damping: 16 }}
+              className="rounded-3xl p-7 sm:p-9 bg-gradient-to-br from-[#0F131D]/90 to-[#0A0D15]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-5 hover:border-[#00DF82]/40 transition-all duration-300"
+            >
               
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82]">
@@ -290,12 +292,17 @@ export default function AboutMe() {
                 </motion.a>
               </div>
 
-            </div>
+            </motion.div>
 
-            {/* 4 Quick Executive Metrics in Glass Cards */}
+            {/* 4 Quick Executive Metrics with Alternating Left and Right Entrances */}
             <div className="grid grid-cols-2 gap-4">
               
+              {/* Metric 1: Slides in from the LEFT */}
               <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ type: "spring", stiffness: 55, damping: 16 }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
               >
@@ -307,7 +314,12 @@ export default function AboutMe() {
                 <span className="text-[10px] text-[#00DF82] font-semibold mt-2 inline-block">Wix & Squarespace</span>
               </motion.div>
 
+              {/* Metric 2: Slides in from the RIGHT */}
               <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ type: "spring", stiffness: 55, damping: 16, delay: 0.08 }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
               >
@@ -319,7 +331,12 @@ export default function AboutMe() {
                 <span className="text-[10px] text-[#00DF82] font-semibold mt-2 inline-block">Completed Degree</span>
               </motion.div>
 
+              {/* Metric 3: Slides in from the LEFT */}
               <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ type: "spring", stiffness: 55, damping: 16, delay: 0.12 }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
               >
@@ -331,7 +348,12 @@ export default function AboutMe() {
                 <span className="text-[10px] text-[#00DF82] font-semibold mt-2 inline-block">Global Remote</span>
               </motion.div>
 
+              {/* Metric 4: Slides in from the RIGHT */}
               <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ type: "spring", stiffness: 55, damping: 16, delay: 0.16 }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
               >
@@ -345,17 +367,11 @@ export default function AboutMe() {
 
             </div>
 
-          </motion.div>
+          </div>
 
-          {/* ================= RIGHT COLUMN: INTERACTIVE CAPABILITIES MATRIX ================= */}
-          <motion.div
-            style={{ y: rightColY }}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-5"
-          >
+          {/* ================= RIGHT COLUMN: ALTERNATING SLIDE-IN SKILL CARDS ================= */}
+          <div className="lg:col-span-6 space-y-5">
+            
             <div className="flex items-center justify-between mb-2">
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#00DF82]">
@@ -370,13 +386,25 @@ export default function AboutMe() {
               </span>
             </div>
 
-            {/* Capability Cards */}
+            {/* Alternating Capability Cards: Left vs Right on Wheel Scroll */}
             <div className="space-y-4">
               {skillCategories.map((cat, index) => {
                 const IconComponent = cat.icon;
+                const isRight = cat.enterFrom === "right";
+                const initialX = isRight ? 130 : -130;
+
                 return (
                   <motion.div
                     key={index}
+                    initial={{ opacity: 0, x: initialX }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false, amount: 0.15 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 55,
+                      damping: 16,
+                      delay: index * 0.08,
+                    }}
                     whileHover={{ y: -4, scale: 1.01 }}
                     className="rounded-2xl p-6 bg-gradient-to-br from-[#0F121A]/95 to-[#090C14]/95 border border-white/[0.08] hover:border-[#00DF82]/60 transition-all duration-300 backdrop-blur-xl shadow-lg group relative overflow-hidden"
                   >
@@ -410,7 +438,7 @@ export default function AboutMe() {
                         initial={{ width: 0 }}
                         whileInView={{ width: `${cat.level}%` }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: index * 0.15, ease: "easeOut" }}
+                        transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
                         className="h-full bg-gradient-to-r from-[#00DF82] to-emerald-400 rounded-full shadow-[0_0_10px_rgba(0,223,130,0.6)]"
                       />
                     </div>
@@ -431,15 +459,21 @@ export default function AboutMe() {
               })}
             </div>
 
-            {/* Quality Commitment Footer Box */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#00DF82]/10 via-emerald-600/5 to-transparent border border-[#00DF82]/30 flex items-center gap-3">
+            {/* Quality Commitment Footer Box: Slides in from the RIGHT */}
+            <motion.div
+              initial={{ opacity: 0, x: 120 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ type: "spring", stiffness: 55, damping: 16 }}
+              className="p-4 rounded-2xl bg-gradient-to-r from-[#00DF82]/10 via-emerald-600/5 to-transparent border border-[#00DF82]/30 flex items-center gap-3"
+            >
               <CheckCircle2 size={18} className="text-[#00DF82] flex-shrink-0" />
               <p className="text-xs text-gray-300 leading-snug">
                 <strong className="text-white">Direct Client Promise:</strong> Fast turnaround, clean code, responsive across all screen sizes, and ongoing support for every website built.
               </p>
-            </div>
+            </motion.div>
 
-          </motion.div>
+          </div>
 
         </div>
 
