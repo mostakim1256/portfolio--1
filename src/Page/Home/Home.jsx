@@ -298,7 +298,7 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mt-16 w-full max-w-6xl mx-auto rounded-2xl bg-[#0F121A] border border-white/[0.08] p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+            className="mt-16 w-full rounded-2xl bg-[#0F121A] border border-white/[0.08] p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
           >
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-center">
               
