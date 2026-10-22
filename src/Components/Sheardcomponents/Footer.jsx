@@ -24,8 +24,27 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[#06070A] border-t border-white/[0.06] text-white py-10 overflow-hidden">
+    <footer className="relative bg-[#06070A] border-t border-white/[0.06] text-white py-14 sm:py-16 overflow-hidden">
       
+      {/* Soft Ambient Glow in Center */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-[#00DF82]/5 blur-[120px] rounded-full pointer-events-none" />
+
+      {/* Huge Background Watermark Typography "SHIFAT" */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+        <span
+          className="text-[20vw] sm:text-[17vw] font-black tracking-widest uppercase leading-none whitespace-nowrap opacity-90"
+          style={{
+            WebkitTextStroke: "1.5px rgba(0, 223, 130, 0.18)",
+            backgroundImage: "linear-gradient(to bottom, rgba(0, 223, 130, 0.20), rgba(255, 255, 255, 0.04) 65%, transparent 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          SHIFAT
+        </span>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Top Row matching reference image */}
@@ -38,7 +57,7 @@ const Footer = () => {
             </div>
             <div>
               <span className="text-sm font-bold tracking-wider text-white">SHIFAT</span>
-              <p className="text-[10px] text-gray-400">Frontend Developer</p>
+              <p className="text-[10px] text-gray-400">Frontend Developer &bull; CMS Expert</p>
             </div>
           </div>
 
@@ -90,7 +109,7 @@ const Footer = () => {
 
         {/* Bottom Copyright Row */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-2">
-          <p>© {new Date().getFullYear()} Shifat. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Mostakim Hossain Shifat. All rights reserved.</p>
           <p>Designed & Developed with Passion</p>
         </div>
 

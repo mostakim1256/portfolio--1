@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, UserCheck, Layers, Sparkles } from "lucide-react";
-import defaultProjectImg from "../../../assets/Image/portfolio.png";
+import defaultProjectImg from "../../../assets/Image/Screenshot 2026-10-19 161145.png";
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -14,19 +14,22 @@ export default function ProjectsSection() {
   ];
 
   const projects = [
-    {
-      id: 1,
-      title: "Portfolio Website",
-      client: "Personal Project",
-      category: "react",
-      platform: "React 19",
-      description:
-        "Modern developer portfolio built with React 19, Tailwind CSS, live particle constellation, and dark emerald aesthetics.",
-      image: defaultProjectImg,
-      tags: ["React", "Tailwind CSS", "Framer Motion"],
-      liveUrl: "https://shifatportfolio.vercel.app/",
-      githubUrl: "https://github.com/mostakim1256/portfolio--1",
-    },
+
+
+    // এটা আমার পোর্টফলিও ওয়েবসাইটের ছিলো এটার ইমেজ ভা এসব কিছু ভালো ছিলো না জন্য এটা কমেন্ট করে রাখা হলো 
+    // {
+    //   id: 1,
+    //   title: "Portfolio Website",
+    //   client: "Personal Project",
+    //   category: "react",
+    //   platform: "React 19",
+    //   description:
+    //     "Modern developer portfolio built with React 19, Tailwind CSS, live particle constellation, and dark emerald aesthetics.",
+    //   image: defaultProjectImg,
+    //   tags: ["React", "Tailwind CSS", "Framer Motion"],
+    //   liveUrl: "https://shifatportfolio.vercel.app/",
+    //   githubUrl: "https://github.com/mostakim1256/portfolio--1",
+    // },
     {
       id: 2,
       title: "VMC Pharmacy Platform",
@@ -35,7 +38,7 @@ export default function ProjectsSection() {
       platform: "Wix Studio",
       description:
         "Comprehensive healthcare and pharmacy website on Wix. Clean patient-first interface, prescription service sections, and mobile layout.",
-      image: "https://images.unsplash.com/photo-1586015555751-63c2c54784a3?auto=format&fit=crop&w=900&q=80",
+      image: defaultProjectImg,
       tags: ["Wix Studio", "Healthcare", "Responsive UI"],
       liveUrl: "https://www.vmcpharmacy.com/",
       githubUrl: "https://www.vmcpharmacy.com/",
