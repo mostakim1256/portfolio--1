@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import {
   Download,
   MapPin,
@@ -11,375 +11,432 @@ import {
   CheckCircle2,
   Code2,
   Globe,
-  Palette,
-  ExternalLink,
-  Flame,
+  Layers,
+  Award,
+  Zap,
+  Check,
 } from "lucide-react";
 import bg from "../../../assets/Image/ChatGPT_Image_Feb_9__2026__12_21_30_PM-removebg-preview.png";
 import cv from "../../../assets/Image/shifat cv.pdf";
 
 export default function AboutMe() {
-  const [activeTab, setActiveTab] = useState("all");
+  const sectionRef = useRef(null);
 
-  // Core CMS & Frontend Skills strictly reflecting user expertise
-  const primarySkills = [
+  // Mouse move tracking for interactive parallax spotlight
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePosition({ x, y });
+  };
+
+  // Scroll parallax driven by Framer Motion
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Smooth springs for buttery scroll transforms
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // Parallax transforms for background image & typography
+  const bgImageY = useTransform(smoothProgress, [0, 1], [-70, 70]);
+  const bgImageScale = useTransform(smoothProgress, [0, 1], [0.95, 1.08]);
+  const watermarkY = useTransform(smoothProgress, [0, 1], [60, -60]);
+  const leftColY = useTransform(smoothProgress, [0, 1], [25, -25]);
+  const rightColY = useTransform(smoothProgress, [0, 1], [40, -40]);
+
+  // Skill clusters representing authentic expertise without any backend
+  const skillCategories = [
     {
-      name: "Wix Studio, Editor & Harmony",
-      percent: 98,
-      category: "cms",
-      badge: "Mastery",
+      title: "CMS Platforms Mastery",
+      badge: "Primary Specialty",
+      level: 98,
+      desc: "Pixel-perfect visual architectures, custom interactions, and high-converting layouts.",
+      skills: [
+        "Wix Studio",
+        "Wix Editor",
+        "Wix Harmony",
+        "Squarespace 7.1",
+        "Fluid Engine",
+        "Custom CSS/JS",
+      ],
+      icon: Globe,
       color: "#00DF82",
     },
     {
-      name: "Squarespace 7.1 / Fluid Engine",
-      percent: 95,
-      category: "cms",
-      badge: "Expert",
+      title: "Core Frontend & Styling",
+      badge: "Expert Level",
+      level: 95,
+      desc: "Clean semantic markup, cutting-edge responsive layouts, and modern CSS utilities.",
+      skills: [
+        "HTML5",
+        "Modern CSS3",
+        "Tailwind CSS",
+        "DaisyUI",
+        "JavaScript (ES6+)",
+        "DOM Scripting",
+      ],
+      icon: Code2,
       color: "#00DF82",
     },
     {
-      name: "HTML5 & Modern CSS3",
-      percent: 95,
-      category: "frontend",
-      badge: "Expert",
-      color: "#00DF82",
-    },
-    {
-      name: "Tailwind CSS & DaisyUI",
-      percent: 95,
-      category: "frontend",
-      badge: "Expert",
-      color: "#00DF82",
-    },
-    {
-      name: "JavaScript (ES6+) & DOM",
-      percent: 90,
-      category: "frontend",
-      badge: "Advanced",
-      color: "#00DF82",
-    },
-    {
-      name: "React.js (Frontend UI)",
-      percent: 78,
-      category: "frontend",
+      title: "Frontend Frameworks & UI",
       badge: "Proficient",
+      level: 78,
+      desc: "Interactive reactive user interfaces and single-page frontend web solutions.",
+      skills: [
+        "React.js (Frontend)",
+        "Next.js (Frontend)",
+        "Figma to Pixel-Code",
+        "Responsive Breakpoints",
+      ],
+      icon: Layers,
       color: "#38bdf8",
     },
     {
-      name: "Next.js (Frontend Routing)",
-      percent: 72,
-      category: "frontend",
-      badge: "Proficient",
+      title: "Optimization & Delivery",
+      badge: "High Performance",
+      level: 92,
+      desc: "Fast load times, pristine mobile UX, and structured technical on-page SEO.",
+      skills: [
+        "Core Web Vitals",
+        "Speed Optimization",
+        "Technical SEO",
+        "Cross-Browser Testing",
+      ],
+      icon: Zap,
       color: "#a78bfa",
     },
   ];
 
-  const filteredSkills =
-    activeTab === "all"
-      ? primarySkills
-      : primarySkills.filter((s) => s.category === activeTab);
-
   return (
     <section
       id="about"
-      className="relative bg-[#08090D] text-white py-24 lg:py-32 overflow-hidden"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      className="relative bg-[#08090D] text-white py-28 lg:py-36 overflow-hidden select-none"
     >
-      {/* ================= LUXURY AMBIENT BACKGROUND GLOWS ================= */}
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[#00DF82]/10 rounded-full blur-[170px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 right-0 w-[450px] h-[450px] bg-emerald-600/5 rounded-full blur-[150px] pointer-events-none" />
+      {/* ================= BACKGROUND PARALLAX IMAGE WITH OPACITY ================= */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        
+        {/* Soft Ambient Neon Glow Behind Image */}
+        <div className="absolute top-1/3 right-10 lg:right-1/4 w-[500px] h-[500px] bg-[#00DF82]/12 rounded-full blur-[170px] pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-emerald-600/5 rounded-full blur-[150px] pointer-events-none" />
 
-      {/* Decorative animated crosshairs / grid glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(#00DF82_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.03] pointer-events-none" />
+        {/* Huge Scrolling Watermark Typography */}
+        <motion.div
+          style={{ y: watermarkY }}
+          className="absolute inset-x-0 top-1/4 flex items-center justify-center opacity-[0.03] select-none"
+        >
+          <span className="text-[22vw] font-black tracking-tighter uppercase whitespace-nowrap text-white leading-none">
+            ABOUT ME
+          </span>
+        </motion.div>
 
+        {/* The Developer's Portrait Image with Scroll Parallax & Opacity */}
+        <motion.div
+          style={{
+            y: bgImageY,
+            scale: bgImageScale,
+          }}
+          className="absolute right-[-10%] sm:right-[2%] lg:right-[8%] top-[10%] lg:top-[5%] w-[85%] sm:w-[60%] lg:w-[46%] max-w-[620px] pointer-events-none z-0"
+        >
+          <img
+            src={bg}
+            alt="Mostakim Hossain Shifat - Background Parallax"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 70%, transparent 95%), linear-gradient(to left, rgba(0,0,0,0.85) 50%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 70%, transparent 95%), linear-gradient(to left, rgba(0,0,0,0.85) 50%, transparent 100%)",
+            }}
+            className="w-full h-auto object-contain opacity-25 lg:opacity-30 filter contrast-110 drop-shadow-[0_0_60px_rgba(0,223,130,0.25)] transition-opacity duration-700"
+          />
+        </motion.div>
+
+        {/* Dynamic Cursor Spotlight Effect */}
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-60"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0, 223, 130, 0.05), transparent 80%)`,
+          }}
+        />
+
+        {/* Subtle grid mesh */}
+        <div className="absolute inset-0 bg-[radial-gradient(#00DF82_1px,transparent_1px)] [background-size:44px_44px] opacity-[0.025]" />
+      </div>
+
+      {/* ================= FOREGROUND CONTENT LAYER ================= */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* ================= 3-COLUMN LUXURY GRID ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* ================= LEFT COLUMN: BIO & GLASS CARDS ================= */}
+        {/* Top Header Badge & Impact Headline */}
+        <div className="max-w-3xl mb-16 lg:mb-20">
           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#00DF82]/10 border border-[#00DF82]/30 text-[#00DF82] text-xs font-bold tracking-widest uppercase mb-4"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#00DF82] animate-ping" />
+            <span>ABOUT ME &bull; THE DEVELOPER</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]"
+          >
+            Crafting Pixel-Perfect Websites with{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00DF82] via-emerald-400 to-teal-200">
+              Precision & Speed
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed"
+          >
+            Specialized in converting client ideas into ultra-fast, high-converting digital storefronts and portfolios using Wix Studio, Squarespace 7.1, and modern frontend code.
+          </motion.p>
+        </div>
+
+        {/* 2-Column Asymmetric Executive Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+          
+          {/* ================= LEFT COLUMN: DEEP NARRATIVE & STATS ================= */}
+          <motion.div
+            style={{ y: leftColY }}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="lg:col-span-5 space-y-6"
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-6 space-y-8"
           >
-            {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00DF82]/10 border border-[#00DF82]/30 text-[#00DF82] text-xs font-bold tracking-wide">
-              <Sparkles size={13} className="animate-spin text-[#00DF82]" style={{ animationDuration: "6s" }} />
-              <span>WIX &bull; SQUARESPACE &bull; FRONTEND SPECIALIST</span>
-            </div>
-
-            {/* Heading */}
-            <div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                About <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00DF82] via-emerald-400 to-teal-300">Me</span>
-              </h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-[#00DF82] to-transparent rounded-full mt-3" />
-            </div>
-
-            {/* Authentic bio highlighting user strengths & Kurigram Polytechnic Institute */}
-            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-              I'm <span className="text-white font-semibold">Mostakim Hossain Shifat</span>, a dedicated Frontend & CMS Web Developer with a <span className="text-[#00DF82] font-semibold">Diploma in Engineering from Kurigram Polytechnic Institute</span>. With 1+ year of professional experience and <span className="text-[#00DF82] font-semibold">45+ successfully delivered client websites</span>, I specialize in crafting pixel-perfect, high-converting digital experiences.
-            </p>
-
-            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
-              My core mastery lies in <span className="text-white font-medium">Wix Studio, Wix Editor, Wix Harmony</span> and <span className="text-white font-medium">Squarespace 7.1</span>, paired with custom <span className="text-white font-medium">HTML5, CSS3, JavaScript</span>, and <span className="text-white font-medium">Tailwind CSS</span>. I also design clean, reactive interfaces with <span className="text-white font-medium">React.js & Next.js</span>.
-            </p>
-
-            {/* 2x2 Glassmorphism Micro-Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            {/* Story Card */}
+            <div className="rounded-3xl p-7 sm:p-9 bg-gradient-to-br from-[#0F131D]/90 to-[#0A0D15]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-5 hover:border-[#00DF82]/40 transition-all duration-300">
               
-              {/* Card 1: Location */}
-              <motion.div
-                whileHover={{ scale: 1.03, y: -2 }}
-                className="p-3.5 rounded-2xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/[0.08] hover:border-[#00DF82]/50 hover:shadow-[0_0_20px_rgba(0,223,130,0.15)] transition-all duration-300 flex items-center gap-3 group"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] group-hover:scale-110 transition-transform">
-                  <MapPin size={16} />
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82]">
+                  <Sparkles size={20} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-wider text-gray-400">Location</p>
-                  <p className="text-xs font-bold text-white">Kurigram / Dhaka, BD</p>
+                  <h3 className="text-lg font-bold text-white">Mostakim Hossain Shifat</h3>
+                  <p className="text-xs text-[#00DF82] font-semibold">CMS Specialist & Frontend Web Developer</p>
                 </div>
-              </motion.div>
-
-              {/* Card 2: Availability */}
-              <motion.div
-                whileHover={{ scale: 1.03, y: -2 }}
-                className="p-3.5 rounded-2xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/[0.08] hover:border-[#00DF82]/50 hover:shadow-[0_0_20px_rgba(0,223,130,0.15)] transition-all duration-300 flex items-center gap-3 group"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] group-hover:scale-110 transition-transform">
-                  <Briefcase size={16} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wider text-gray-400">Freelance Status</p>
-                  <p className="text-xs font-bold text-[#00DF82]">Available Now (45+ Done)</p>
-                </div>
-              </motion.div>
-
-              {/* Card 3: Email */}
-              <motion.div
-                whileHover={{ scale: 1.03, y: -2 }}
-                className="p-3.5 rounded-2xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/[0.08] hover:border-[#00DF82]/50 hover:shadow-[0_0_20px_rgba(0,223,130,0.15)] transition-all duration-300 flex items-center gap-3 group sm:col-span-1"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] group-hover:scale-110 transition-transform">
-                  <Mail size={16} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[10px] uppercase tracking-wider text-gray-400">Direct Email</p>
-                  <p className="text-xs font-bold text-white truncate">mostakimshifat476@gmail.com</p>
-                </div>
-              </motion.div>
-
-              {/* Card 4: Education */}
-              <motion.div
-                whileHover={{ scale: 1.03, y: -2 }}
-                className="p-3.5 rounded-2xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/[0.08] hover:border-[#00DF82]/50 hover:shadow-[0_0_20px_rgba(0,223,130,0.15)] transition-all duration-300 flex items-center gap-3 group"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] group-hover:scale-110 transition-transform">
-                  <GraduationCap size={16} />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wider text-gray-400">Education</p>
-                  <p className="text-xs font-bold text-white">Diploma in Engg (KPI)</p>
-                </div>
-              </motion.div>
-
-            </div>
-
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-wrap gap-4 items-center">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                href={cv}
-                download="Mostakim_Hossain_Shifat_CV.pdf"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_25px_rgba(0,223,130,0.4)] hover:shadow-[0_0_35px_rgba(0,223,130,0.65)] transition-all duration-300"
-              >
-                <span>Download CV</span>
-                <Download size={14} />
-              </motion.a>
-
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                href="#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-xs bg-white/[0.04] border border-white/[0.12] text-gray-200 hover:text-[#00DF82] hover:border-[#00DF82]/60 hover:bg-white/[0.08] transition-all duration-300"
-              >
-                <span>Let's Talk</span>
-                <ArrowRight size={14} />
-              </motion.a>
-            </div>
-
-          </motion.div>
-
-          {/* ================= CENTER COLUMN: LUXURY ANIMATED PORTRAIT CARD ================= */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-3 flex justify-center relative"
-          >
-            {/* Continuous Gentle Floating Animation */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-              className="relative w-full max-w-xs"
-            >
-              
-              {/* Outer Luxury Animated Glow Border */}
-              <div className="absolute -inset-1.5 bg-gradient-to-tr from-[#00DF82] via-emerald-500/40 to-teal-400/20 rounded-[30px] blur-md opacity-75 group-hover:opacity-100 transition duration-700 animate-pulse" />
-
-              {/* Main Card Frame */}
-              <div className="relative rounded-[28px] bg-[#0E121B] border-2 border-[#00DF82]/50 overflow-hidden p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-                
-                {/* Photo */}
-                <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#131926] to-[#0A0D14]">
-                  <img
-                    src={bg}
-                    alt="Mostakim Hossain Shifat"
-                    className="w-full h-[370px] sm:h-[410px] object-cover object-top transition duration-500 hover:scale-103"
-                  />
-                  {/* Subtle bottom shadow overlay */}
-                  <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-[#0E121B] to-transparent pointer-events-none" />
-                </div>
-
-                {/* Subtitle tag at bottom of card */}
-                <div className="mt-2 text-center pb-1">
-                  <p className="text-xs font-bold text-white tracking-wide">Mostakim Hossain Shifat</p>
-                  <p className="text-[10px] text-[#00DF82] font-semibold tracking-wider uppercase mt-0.5">
-                    Wix, Squarespace & Frontend Pro
-                  </p>
-                </div>
-
               </div>
 
-              {/* FLOATING LUXURY BADGE 1: Top Right */}
+              <p className="text-gray-300 text-sm leading-relaxed">
+                I hold a <strong className="text-white">Diploma in Engineering</strong> from <strong className="text-[#00DF82]">Kurigram Polytechnic Institute</strong>. With over 1 year of hands-on professional freelancing, I have delivered <strong className="text-white">45+ live client websites</strong> across the US, UK, and worldwide.
+              </p>
+
+              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                My approach is 100% focused on <strong className="text-gray-200">client-side visual excellence</strong>: whether mastering <strong className="text-white">Wix Studio, Wix Editor, and Wix Harmony</strong> or tailoring luxury <strong className="text-white">Squarespace 7.1</strong> Fluid Engine sites with custom CSS/JS. I also build lightning-fast web interfaces using <strong className="text-white">React.js, Next.js, and Tailwind CSS</strong>.
+              </p>
+
+              {/* Verified Checklist */}
+              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {[
+                  "100% Client-Side Dedicated",
+                  "45+ Delivered Websites",
+                  "Zero Backend Overhead",
+                  "Wix Studio Certified Standard",
+                  "Kurigram Polytechnic Alum",
+                  "SEO & Core Web Vitals Ready",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-xs text-gray-300">
+                    <span className="w-4 h-4 rounded-full bg-[#00DF82]/15 border border-[#00DF82]/40 flex items-center justify-center text-[#00DF82] flex-shrink-0">
+                      <Check size={10} />
+                    </span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-4 flex flex-wrap items-center gap-4 border-t border-white/[0.08]">
+                <motion.a
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  href={cv}
+                  download="Mostakim_Hossain_Shifat_CV.pdf"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_25px_rgba(0,223,130,0.4)] transition-all duration-300"
+                >
+                  <span>Download CV</span>
+                  <Download size={14} />
+                </motion.a>
+
+                <motion.a
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs bg-white/[0.04] border border-white/[0.12] text-gray-200 hover:text-[#00DF82] hover:border-[#00DF82]/60 transition-all duration-300"
+                >
+                  <span>Let's Discuss a Project</span>
+                  <ArrowRight size={14} />
+                </motion.a>
+              </div>
+
+            </div>
+
+            {/* 4 Quick Executive Metrics in Glass Cards */}
+            <div className="grid grid-cols-2 gap-4">
+              
               <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 sm:-right-6 z-20 px-3.5 py-1.5 rounded-2xl bg-[#0F1420]/95 border border-[#00DF82]/50 backdrop-blur-xl shadow-[0_10px_25px_rgba(0,0,0,0.7)] flex items-center gap-2"
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
               >
-                <span className="w-2 h-2 rounded-full bg-[#00DF82] animate-ping" />
-                <span className="text-[11px] font-bold text-white whitespace-nowrap">
-                  ⚡ Wix Studio & Harmony
-                </span>
+                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] mb-3">
+                  <Briefcase size={18} />
+                </div>
+                <h4 className="text-2xl font-extrabold text-white">45+</h4>
+                <p className="text-xs text-gray-400 mt-0.5">Projects Delivered</p>
+                <span className="text-[10px] text-[#00DF82] font-semibold mt-2 inline-block">Wix & Squarespace</span>
               </motion.div>
 
-              {/* FLOATING LUXURY BADGE 2: Bottom Left */}
               <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.3 }}
-                className="absolute -bottom-4 -left-4 sm:-left-6 z-20 px-3.5 py-1.5 rounded-2xl bg-[#0F1420]/95 border border-[#00DF82]/50 backdrop-blur-xl shadow-[0_10px_25px_rgba(0,0,0,0.7)] flex items-center gap-2"
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
               >
-                <Flame size={13} className="text-[#00DF82]" />
-                <span className="text-[11px] font-bold text-white whitespace-nowrap">
-                  45+ Real Projects
-                </span>
+                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] mb-3">
+                  <GraduationCap size={18} />
+                </div>
+                <h4 className="text-sm font-extrabold text-white leading-tight">Diploma in Engg</h4>
+                <p className="text-xs text-gray-400 mt-1">Kurigram Polytechnic</p>
+                <span className="text-[10px] text-[#00DF82] font-semibold mt-2 inline-block">Completed Degree</span>
               </motion.div>
 
-            </motion.div>
+              <motion.div
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
+              >
+                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] mb-3">
+                  <MapPin size={18} />
+                </div>
+                <h4 className="text-sm font-extrabold text-white">Bangladesh</h4>
+                <p className="text-xs text-gray-400 mt-1">Kurigram / Dhaka</p>
+                <span className="text-[10px] text-[#00DF82] font-semibold mt-2 inline-block">Global Remote</span>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="p-5 rounded-2xl bg-[#0F121A]/80 border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 backdrop-blur-md"
+              >
+                <div className="w-9 h-9 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] mb-3">
+                  <Award size={18} />
+                </div>
+                <h4 className="text-2xl font-extrabold text-white">100%</h4>
+                <p className="text-xs text-gray-400 mt-0.5">Client Satisfaction</p>
+                <span className="text-[10px] text-[#00DF82] font-semibold mt-2 inline-block">5-Star Feedback</span>
+              </motion.div>
+
+            </div>
+
           </motion.div>
 
-          {/* ================= RIGHT COLUMN: SKILLS PROGRESS & METRICS ================= */}
+          {/* ================= RIGHT COLUMN: INTERACTIVE CAPABILITIES MATRIX ================= */}
           <motion.div
+            style={{ y: rightColY }}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            id="skills"
-            className="lg:col-span-4 space-y-5"
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-6 space-y-5"
           >
-            
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#00DF82]">
-                  MY EXPERTISE
+                  TECHNICAL CAPABILITIES
                 </p>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-                  My <span className="text-[#00DF82]">Skills</span>
+                <h3 className="text-2xl font-extrabold text-white mt-1">
+                  Skills & Expertise <span className="text-[#00DF82]">Matrix</span>
                 </h3>
               </div>
-
-              {/* Filter Tabs */}
-              <div className="flex gap-1.5 p-1 rounded-xl bg-white/[0.04] border border-white/[0.08]">
-                <button
-                  onClick={() => setActiveTab("all")}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all ${
-                    activeTab === "all"
-                      ? "bg-[#00DF82] text-[#08090D] shadow-sm"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  All
-                </button>
-                <button
-                  onClick={() => setActiveTab("cms")}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all ${
-                    activeTab === "cms"
-                      ? "bg-[#00DF82] text-[#08090D] shadow-sm"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  CMS
-                </button>
-                <button
-                  onClick={() => setActiveTab("frontend")}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all ${
-                    activeTab === "frontend"
-                      ? "bg-[#00DF82] text-[#08090D] shadow-sm"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  Code
-                </button>
-              </div>
+              <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-white/[0.04] text-gray-300 border border-white/[0.08]">
+                Client-Side Stack
+              </span>
             </div>
 
-            {/* Animated Skill Progress Bars */}
-            <div className="space-y-4 pt-1">
-              {filteredSkills.map((skill, index) => (
-                <div key={skill.name} className="space-y-1.5 group">
-                  <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="text-gray-200 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00DF82] group-hover:scale-150 transition-transform" />
-                      <span className="group-hover:text-white transition-colors">{skill.name}</span>
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-white/[0.05] text-[#00DF82] border border-[#00DF82]/20">
-                        {skill.badge}
-                      </span>
-                      <span className="text-gray-400 text-xs font-bold">{skill.percent}%</span>
+            {/* Capability Cards */}
+            <div className="space-y-4">
+              {skillCategories.map((cat, index) => {
+                const IconComponent = cat.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    className="rounded-2xl p-6 bg-gradient-to-br from-[#0F121A]/95 to-[#090C14]/95 border border-white/[0.08] hover:border-[#00DF82]/60 transition-all duration-300 backdrop-blur-xl shadow-lg group relative overflow-hidden"
+                  >
+                    {/* Top ambient hover line */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#00DF82] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] group-hover:scale-110 transition-transform">
+                          <IconComponent size={20} />
+                        </div>
+                        <div>
+                          <h4 className="text-base font-bold text-white group-hover:text-[#00DF82] transition-colors">
+                            {cat.title}
+                          </h4>
+                          <p className="text-[11px] text-gray-400 mt-0.5">{cat.desc}</p>
+                        </div>
+                      </div>
+
+                      <div className="text-right flex-shrink-0">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#00DF82]/10 text-[#00DF82] border border-[#00DF82]/30">
+                          {cat.badge}
+                        </span>
+                        <p className="text-xs font-extrabold text-white mt-1">{cat.level}%</p>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Progress bar track */}
-                  <div className="h-2 w-full bg-white/[0.07] rounded-full overflow-hidden p-0.5 relative">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.percent}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, delay: index * 0.1, ease: "easeOut" }}
-                      className="h-full bg-gradient-to-r from-[#00DF82] via-emerald-400 to-[#00DF82] rounded-full shadow-[0_0_12px_rgba(0,223,130,0.7)] relative"
-                    >
-                      {/* Traveling Shimmer Light */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" />
-                    </motion.div>
-                  </div>
-                </div>
-              ))}
+                    {/* Animated Progress Bar */}
+                    <div className="h-1.5 w-full bg-white/[0.06] rounded-full overflow-hidden my-3 relative">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${cat.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: index * 0.15, ease: "easeOut" }}
+                        className="h-full bg-gradient-to-r from-[#00DF82] to-emerald-400 rounded-full shadow-[0_0_10px_rgba(0,223,130,0.6)]"
+                      />
+                    </div>
+
+                    {/* Skill Tags Chips */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {cat.skills.map((skill, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-white/[0.03] text-gray-300 border border-white/[0.08] hover:border-[#00DF82]/40 hover:text-white transition-colors"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
-            {/* Client-Focused Quality Guarantee Note */}
-            <div className="p-3.5 rounded-2xl bg-gradient-to-br from-[#00DF82]/10 to-transparent border border-[#00DF82]/25 mt-4">
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 size={16} className="text-[#00DF82] flex-shrink-0 mt-0.5" />
-                <p className="text-[11px] text-gray-300 leading-relaxed">
-                  <strong className="text-white">100% Client-Side Focused:</strong> Specialized in ultra-fast, responsive CMS setups and frontend styling without backend overhead.
-                </p>
-              </div>
+            {/* Quality Commitment Footer Box */}
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#00DF82]/10 via-emerald-600/5 to-transparent border border-[#00DF82]/30 flex items-center gap-3">
+              <CheckCircle2 size={18} className="text-[#00DF82] flex-shrink-0" />
+              <p className="text-xs text-gray-300 leading-snug">
+                <strong className="text-white">Direct Client Promise:</strong> Fast turnaround, clean code, responsive across all screen sizes, and ongoing support for every website built.
+              </p>
             </div>
 
           </motion.div>
