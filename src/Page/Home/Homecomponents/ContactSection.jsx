@@ -11,6 +11,8 @@ import {
   Instagram,
   Rocket,
   CheckCircle2,
+  AlertCircle,
+  Loader2,
   Sparkles,
 } from "lucide-react";
 
@@ -21,28 +23,60 @@ export default function ContactSection() {
     subject: "Wix & Squarespace Project",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState("idle"); // "idle" | "loading" | "success" | "error"
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    // Send formatted message directly to WhatsApp 01518994147
-    const text =
-      `*New Portfolio Inquiry*%0A%0A` +
-      `👤 *Name:* ${encodeURIComponent(formData.name)}%0A` +
-      `📧 *Email:* ${encodeURIComponent(formData.email)}%0A` +
-      `📌 *Subject:* ${encodeURIComponent(formData.subject)}%0A%0A` +
-      `💬 *Message:*%0A${encodeURIComponent(formData.message)}`;
+    setStatus("loading");
+    setStatusMessage("Sending your message to Mostakim Shifat...");
 
-    const whatsappUrl = `https://wa.me/8801518994147?text=${text}`;
-    window.open(whatsappUrl, "_blank");
+    try {
+      // Direct FormSubmit.co AJAX API sending to mostakimshifat32@gmail.com
+      const response = await fetch("https://formsubmit.co/ajax/mostakimshifat32@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Name: formData.name,
+          Email: formData.email,
+          "Project Type": formData.subject,
+          Message: formData.message,
+          // Unique subject line with emojis and tags so it clearly stands out in inbox
+          _subject: `[🚀 PORTFOLIO LEAD] ${formData.name} sent a new inquiry (${formData.subject})`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
 
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", subject: "Wix & Squarespace Project", message: "" });
-    }, 4000);
+      const data = await response.json();
+
+      if (response.ok && (data.success === "true" || data.success === true)) {
+        setStatus("success");
+        setStatusMessage(
+          "Your message has been sent successfully! It has been delivered directly to mostakimshifat32@gmail.com."
+        );
+        setFormData({
+          name: "",
+          email: "",
+          subject: "Wix & Squarespace Project",
+          message: "",
+        });
+      } else {
+        throw new Error(data.message || "Could not send message");
+      }
+    } catch (err) {
+      console.error("Submission failed:", err);
+      setStatus("error");
+      setStatusMessage(
+        "Could not send automatically due to network. Please send directly to mostakimshifat32@gmail.com or via WhatsApp!"
+      );
+    }
   };
 
   const socialLinks = [
@@ -76,7 +110,7 @@ export default function ContactSection() {
               Let's Work <span className="text-[#00DF82]">Together</span>
             </h2>
             <p className="mt-2 text-gray-400 text-xs sm:text-sm max-w-xl">
-              Have a project in mind or just want to say hi? Feel free to reach out directly via WhatsApp or Email.
+              Have a project in mind or want a custom website? Fill out the form below to email me directly, or reach out on WhatsApp.
             </p>
           </motion.div>
         </div>
@@ -94,6 +128,22 @@ export default function ContactSection() {
           >
             <div className="space-y-4">
               
+              {/* Email Card (updated to mostakimshifat32@gmail.com) */}
+              <a
+                href="mailto:mostakimshifat32@gmail.com"
+                className="flex items-center gap-3.5 p-4 rounded-2xl bg-[#0F121A] border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] group-hover:scale-110 transition-transform">
+                  <Mail size={18} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Direct Email</p>
+                  <p className="text-sm font-bold text-white truncate group-hover:text-[#00DF82] transition-colors">
+                    mostakimshifat32@gmail.com
+                  </p>
+                </div>
+              </a>
+
               {/* WhatsApp Card */}
               <a
                 href="https://wa.me/8801518994147"
@@ -105,22 +155,8 @@ export default function ContactSection() {
                   <Phone size={18} />
                 </div>
                 <div>
-                  <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">WhatsApp & Call</p>
+                  <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">WhatsApp & Phone</p>
                   <p className="text-sm font-bold text-white group-hover:text-[#00DF82] transition-colors">+880 1518-994147</p>
-                </div>
-              </a>
-
-              {/* Email Card */}
-              <a
-                href="mailto:mostakimshifat476@gmail.com"
-                className="flex items-center gap-3.5 p-4 rounded-2xl bg-[#0F121A] border border-white/[0.08] hover:border-[#00DF82]/50 transition-all duration-300 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#00DF82]/10 border border-[#00DF82]/30 flex items-center justify-center text-[#00DF82] group-hover:scale-110 transition-transform">
-                  <Mail size={18} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Email Address</p>
-                  <p className="text-sm font-bold text-white truncate group-hover:text-[#00DF82] transition-colors">mostakimshifat476@gmail.com</p>
                 </div>
               </a>
 
@@ -161,7 +197,7 @@ export default function ContactSection() {
 
           </motion.div>
 
-          {/* ================= COLUMN 2: CONTACT FORM ================= */}
+          {/* ================= COLUMN 2: CONTACT FORM WITH EMAIL SENDING ================= */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -171,11 +207,52 @@ export default function ContactSection() {
           >
             <div className="rounded-2xl p-6 sm:p-8 bg-[#0F121A] border border-white/[0.08] shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
               
-              {submitted && (
-                <div className="mb-5 p-3 rounded-xl bg-[#00DF82]/15 border border-[#00DF82]/40 text-[#00DF82] text-xs font-semibold flex items-center gap-2">
-                  <CheckCircle2 size={16} />
-                  <span>Opening WhatsApp with your message!</span>
-                </div>
+              {/* Success Notification Alert */}
+              {status === "success" && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="mb-5 p-4 rounded-xl bg-[#00DF82]/15 border border-[#00DF82]/50 text-white text-xs space-y-2"
+                >
+                  <div className="flex items-center gap-2 font-bold text-sm text-[#00DF82]">
+                    <CheckCircle2 size={18} />
+                    <span>Inquiry Sent Successfully!</span>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">
+                    Your message has been emailed directly to <strong className="text-[#00DF82]">mostakimshifat32@gmail.com</strong> with unique portfolio identification tags.
+                  </p>
+                  <div className="pt-2 border-t border-[#00DF82]/20 flex items-center justify-between text-[11px]">
+                    <span className="text-gray-400">I will reply to your email shortly.</span>
+                    <button
+                      type="button"
+                      onClick={() => setStatus("idle")}
+                      className="text-[#00DF82] hover:underline font-semibold"
+                    >
+                      Send another &rarr;
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Error Notification Alert */}
+              {status === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="mb-5 p-4 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-xs space-y-2"
+                >
+                  <div className="flex items-center gap-2 font-bold text-sm text-red-400">
+                    <AlertCircle size={18} />
+                    <span>Notice</span>
+                  </div>
+                  <p>{statusMessage}</p>
+                  <a
+                    href="mailto:mostakimshifat32@gmail.com"
+                    className="inline-block text-[#00DF82] font-semibold underline"
+                  >
+                    Click to open your email app and send directly &rarr;
+                  </a>
+                </motion.div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -245,14 +322,37 @@ export default function ContactSection() {
 
                 {/* Submit Button */}
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={status === "loading"}
+                  whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
+                  whileTap={{ scale: status === "loading" ? 1 : 0.98 }}
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_20px_rgba(0,223,130,0.35)] hover:shadow-[0_0_30px_rgba(0,223,130,0.6)] transition-all duration-300"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] disabled:opacity-60 text-[#08090D] shadow-[0_0_20px_rgba(0,223,130,0.35)] hover:shadow-[0_0_30px_rgba(0,223,130,0.6)] transition-all duration-300"
                 >
-                  <span>Send Message to WhatsApp</span>
-                  <Send size={14} />
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 size={15} className="animate-spin text-[#08090D]" />
+                      <span>Sending Email to mostakimshifat32@gmail.com...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message to Email</span>
+                      <Send size={14} />
+                    </>
+                  )}
                 </motion.button>
+
+                {/* WhatsApp Alternative Quick Link */}
+                <div className="pt-2 text-center">
+                  <span className="text-[11px] text-gray-400">Prefer instant messaging? </span>
+                  <a
+                    href="https://wa.me/8801518994147"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] font-bold text-[#00DF82] hover:underline"
+                  >
+                    Chat on WhatsApp (+880 1518-994147) &rarr;
+                  </a>
+                </div>
 
               </form>
 
