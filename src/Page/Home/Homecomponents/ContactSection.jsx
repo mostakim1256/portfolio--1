@@ -10,10 +10,6 @@ import {
   Facebook,
   Instagram,
   Rocket,
-  CheckCircle2,
-  AlertCircle,
-  AlertTriangle,
-  Loader2,
   Sparkles,
 } from "lucide-react";
 
@@ -24,71 +20,6 @@ export default function ContactSection() {
     subject: "Wix & Squarespace Project",
     message: "",
   });
-
-  const [status, setStatus] = useState("idle"); // "idle" | "loading" | "success" | "error"
-  const [statusMessage, setStatusMessage] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-
-    setStatus("loading");
-    setStatusMessage("Sending your message to Mostakim Shifat...");
-
-    try {
-      // Direct FormSubmit.co AJAX API sending to mostakimshifat32@gmail.com
-      const response = await fetch("https://formsubmit.co/ajax/mostakimshifat32@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          Name: formData.name,
-          Email: formData.email,
-          "Project Type": formData.subject,
-          Message: formData.message,
-          // Unique subject line with emojis and tags so it clearly stands out in inbox
-          _subject: `[🚀 PORTFOLIO LEAD] ${formData.name} sent a new inquiry (${formData.subject})`,
-          _template: "table",
-          _captcha: "false",
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && (data.success === "true" || data.success === true)) {
-        setStatus("success");
-        setStatusMessage(
-          "Your message has been sent successfully! It has been delivered directly to mostakimshifat32@gmail.com."
-        );
-        setFormData({
-          name: "",
-          email: "",
-          subject: "Wix & Squarespace Project",
-          message: "",
-        });
-      } else if (
-        data.message &&
-        (data.message.toLowerCase().includes("activation") ||
-          data.message.toLowerCase().includes("actived"))
-      ) {
-        setStatus("activation");
-        setStatusMessage(
-          "FormSubmit has sent an 'Activate Form' confirmation email to mostakimshifat32@gmail.com! Please check your Gmail and click 'Activate Form'. After that, every submission will work automatically."
-        );
-      } else {
-        throw new Error(data.message || "Could not send message");
-      }
-    } catch (err) {
-      console.error("Submission failed:", err);
-      setStatus("error");
-      setStatusMessage(
-        err.message ||
-          "Could not send automatically. Please reach out directly to mostakimshifat32@gmail.com or via WhatsApp!"
-      );
-    }
-  };
 
   const socialLinks = [
     { icon: Github, label: "GitHub", href: "https://github.com/mostakim1256" },
@@ -218,93 +149,25 @@ export default function ContactSection() {
           >
             <div className="rounded-2xl p-6 sm:p-8 bg-[#0F121A] border border-white/[0.08] shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
               
-              {/* Success Notification Alert */}
-              {status === "success" && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-5 p-4 rounded-xl bg-[#00DF82]/15 border border-[#00DF82]/50 text-white text-xs space-y-2"
-                >
-                  <div className="flex items-center gap-2 font-bold text-sm text-[#00DF82]">
-                    <CheckCircle2 size={18} />
-                    <span>Inquiry Sent Successfully!</span>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed">
-                    Your message has been emailed directly to <strong className="text-[#00DF82]">mostakimshifat32@gmail.com</strong> with unique portfolio identification tags.
-                  </p>
-                  <div className="pt-2 border-t border-[#00DF82]/20 flex items-center justify-between text-[11px]">
-                    <span className="text-gray-400">I will reply to your email shortly.</span>
-                    <button
-                      type="button"
-                      onClick={() => setStatus("idle")}
-                      className="text-[#00DF82] hover:underline font-semibold"
-                    >
-                      Send another &rarr;
-                    </button>
-                  </div>
-                </motion.div>
-              )}
+              <form
+                action="https://formsubmit.co/mostakimshifat32@gmail.com"
+                method="POST"
+                className="space-y-4"
+              >
+                {/* FormSubmit Configuration Settings */}
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="[🚀 PORTFOLIO LEAD] New Client Inquiry via Website"
+                />
+                <input
+                  type="hidden"
+                  name="_autoresponse"
+                  value="Thank you for reaching out to Mostakim Shifat! I have received your message and will get back to you shortly."
+                />
 
-              {/* First-time Activation Alert */}
-              {status === "activation" && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-5 p-4 rounded-xl bg-amber-500/15 border border-amber-500/50 text-white text-xs space-y-2.5"
-                >
-                  <div className="flex items-center gap-2 font-bold text-sm text-amber-400">
-                    <AlertTriangle size={18} />
-                    <span>Action Required: Activate Your Form (First Time Only)</span>
-                  </div>
-                  <p className="text-gray-200 leading-relaxed">
-                    FormSubmit-এর সিকিউরিটি ভেরিফিকেশনের জন্য <strong className="text-amber-400 font-semibold">mostakimshifat32@gmail.com</strong>-এ একটি অ্যাক্টিভেশন ইমেইল পাঠানো হয়েছে।
-                  </p>
-                  <p className="text-gray-300 leading-relaxed">
-                    আপনার Gmail ওপেন করে FormSubmit-এর পাঠানো মেইলটিতে ঢুকে <span className="text-amber-300 font-bold underline">"Activate Form"</span> বাটনে মাত্র <strong>১ বার</strong> ক্লিক করে দিন। এর পর থেকে প্রতিটা মেসেজ সরাসরি অটোমেটিক চলে আসবে!
-                  </p>
-                  <div className="pt-2 border-t border-amber-500/25 flex items-center justify-between text-[11px]">
-                    <a
-                      href="https://mail.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-amber-400 hover:text-amber-300 font-bold underline"
-                    >
-                      Open Gmail to Activate &rarr;
-                    </a>
-                    <button
-                      type="button"
-                      onClick={() => setStatus("idle")}
-                      className="text-gray-400 hover:text-white"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Error Notification Alert */}
-              {status === "error" && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-5 p-4 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-xs space-y-2"
-                >
-                  <div className="flex items-center gap-2 font-bold text-sm text-red-400">
-                    <AlertCircle size={18} />
-                    <span>Notice</span>
-                  </div>
-                  <p>{statusMessage}</p>
-                  <a
-                    href="mailto:mostakimshifat32@gmail.com"
-                    className="inline-block text-[#00DF82] font-semibold underline"
-                  >
-                    Click to open your email app and send directly &rarr;
-                  </a>
-                </motion.div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                
                 {/* Name */}
                 <div>
                   <label className="block text-[11px] font-semibold text-gray-400 mb-1.5">
@@ -312,6 +175,7 @@ export default function ContactSection() {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     placeholder="Enter your name"
                     value={formData.name}
@@ -327,6 +191,7 @@ export default function ContactSection() {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     placeholder="Enter your email"
                     value={formData.email}
@@ -341,6 +206,7 @@ export default function ContactSection() {
                     Project Type
                   </label>
                   <select
+                    name="Project Type"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#0F121A] border border-white/[0.08] text-white focus:border-[#00DF82] outline-none text-xs transition cursor-pointer"
@@ -359,6 +225,7 @@ export default function ContactSection() {
                     Message *
                   </label>
                   <textarea
+                    name="message"
                     rows={4}
                     required
                     placeholder="Tell me about your project requirements..."
@@ -370,23 +237,13 @@ export default function ContactSection() {
 
                 {/* Submit Button */}
                 <motion.button
-                  disabled={status === "loading"}
-                  whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
-                  whileTap={{ scale: status === "loading" ? 1 : 0.98 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] disabled:opacity-60 text-[#08090D] shadow-[0_0_20px_rgba(0,223,130,0.35)] hover:shadow-[0_0_30px_rgba(0,223,130,0.6)] transition-all duration-300"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full font-bold text-xs bg-[#00DF82] hover:bg-[#00c975] text-[#08090D] shadow-[0_0_20px_rgba(0,223,130,0.35)] hover:shadow-[0_0_30px_rgba(0,223,130,0.6)] transition-all duration-300 cursor-pointer"
                 >
-                  {status === "loading" ? (
-                    <>
-                      <Loader2 size={15} className="animate-spin text-[#08090D]" />
-                      <span>Sending Email to mostakimshifat32@gmail.com...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Send Message to Email</span>
-                      <Send size={14} />
-                    </>
-                  )}
+                  <span>Send Message to Email</span>
+                  <Send size={14} />
                 </motion.button>
 
                 {/* WhatsApp Alternative Quick Link */}
